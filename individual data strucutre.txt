@@ -1,0 +1,108 @@
+===========================================================
+                        Score Search           
+                Individual Score Data Structure  
+===========================================================
+
+TODO:   1) Decide whether score variation should include Music21 stream objects
+        2) Decide whether the Score Dictionary can be modified by a human within the database
+
+{ Title:    # from file name
+    { File Information:
+        { Created On:  human readable date,
+          Modified On: human readable date,
+          Path:        file location on disk,
+          Type:        {score formats: file},                              # upload the file (pdf/musicxml)? include stream for non-leadsheets?
+          Stream:      Music21 stream for the leadsheet version
+        }
+    }
+    { About:     # will need to come from a db/spreadsheet - some fields will not be filled.
+        { Composer:        name (if available),
+          Origin:          contient (if no composer),
+          Language:        self-explanitory,
+          Genre:           self-explanitory,
+          Style:           if not a folksong,
+          Harmony:         kind of harmony - if any,
+          Theme:           what the song is about
+          Source:          where published and/or originally found, 
+        }
+    }
+    { Rhythm:
+        { Time Signature:      list,
+          Meter:               calculated from time signature,
+          Values:              { All:    {Part X: [list of note/rest values in order of appearance]},     # need a list for each part
+                                 Types:  list of note:appearance dictionaries
+                               },
+          Ties                 { Number:  number
+                                 Lengths:  list
+                               },    
+          Anacrusis:           quarterLength (music21-ism)                                      # translate into a real note value?
+        }
+    }
+    { Pitch:
+        { Key Signature:    list,                                                    # have to deal with unpitched scores somehow
+          Clef:             list,
+          Letter Names:     { All: list of letter names in order of appearance,
+                              Types: list of unique letter:appearance dictionaries
+                            },
+          Solfege:          { All: list of solfege syllables in order of appearance,
+                              Types: list of unique solfege:appearance dictionaries
+                            },
+          Intervals:        { All: list of intervals in order of appearance,
+                              Types: list of intervals:appearance dictionaries
+                            },
+          Range:            { Part X: { Lowest Note: string,
+                                        Highest Note: string,
+                                        Interval: string
+                                      }
+                            }
+        }
+    }
+    { Other:
+        { Parts:    number,
+          Length:   in measures,
+          Repeats:  type,    
+          Form:     type,        # if possible
+          Lyrics:   list,
+          Chords:   boolean      # ???
+          Slurs:    number and length  
+        }
+    }
+}
+
+
+===========================================================
+                        Music 21           
+                     Rich Metadata  
+===========================================================
+
+Music21 provides the following metadata
+    [('ambitus', "AmbitusShort(semitones=4, diatonic='M3', pitchLowest='A4', "pitchHighest='C#5')"),
+     ('composer', 'Japanese'),
+     ('keySignatureFirst', '3'),
+     ('keySignatures', '[3]'),
+     ('movementName', 'A Cup of Tea'),
+     ('noteCount', '37'),
+     ('numberOfParts', '1'),
+     ('pitchHighest', 'C#5'),
+     ('pitchLowest', 'A4'),
+     ('quarterLength', '24.0'),
+     ('sourcePath', '/Users/admin/Dropbox (Personal)/Score Library/xml/a cup of tea.musicxml'),
+     ('tempoFirst', '<music21.tempo.MetronomeMark Quarter=100.0>'),
+     ('tempos', "['<music21.tempo.MetronomeMark Quarter=100.0>']"),
+     ('timeSignatureFirst', '2/4'),
+     ('timeSignatures', "['2/4']")]
+
+Elements we plan to extract:
+    ambitus - AmbitusShort - semitones
+    ambitus - AmbitusShort - diatonic
+    composer
+    keySignatures
+    movementName
+    noteCount
+    numberOfParts
+    pitchHighest
+    pitchLowest
+    quarterLength
+    timeSignatures
+
+Some of these elements will be processed into a more usable form.
