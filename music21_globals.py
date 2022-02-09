@@ -27,10 +27,10 @@ import codecs
 #                                           VARIABLES
 #-----------------------------------------------------------------------------------------------
 
-SCORE_DATAPATH           = Path.home().joinpath('Dropbox (Personal)', 'Score Library', 'score_search', '_Data', 'score_dictionary.pkl')
-SCORE_LOGPATH            = Path.home().joinpath('Dropbox (Personal)', 'Score Library', 'score_search', '_Logs', 'score_dictionary.txt')
+SCORE_DATAPATH           = Path.home().joinpath('Dropbox (Personal)', 'Score Library', 'score_search', 'score_data', '_Data', 'score_dictionary.pkl')
+SCORE_LOGPATH            = Path.home().joinpath('Dropbox (Personal)', 'Score Library', 'score_search', 'score_data', '_Logs', 'score_dictionary.txt')
 CORPUS_FILEPATH          = Path.home().joinpath('Dropbox (Personal)', 'Score Library', 'xml')
-CACHE_FILEPATH           = Path.home().joinpath('Dropbox (Personal)', 'Score Library', 'score_search', '_cache')
+CACHE_FILEPATH           = Path.home().joinpath('Dropbox (Personal)', 'Score Library', 'score_search', 'score_data', '_cache')
 
 #                                            METHODS
 #-----------------------------------------------------------------------------------------------
@@ -277,11 +277,9 @@ def update_metadata_cache():
 #-----------------------------------------------------------------------------------------------
 if __name__ == '__main__':
     
-    #reset_corpus()
-    #define_corpus()
-    #build_metadata_cache()
-
-    update_metadata_cache()
-    score_file_info()
+    reset_corpus()
+    define_corpus()
+    build_metadata_cache()
 
     #update_metadata_cache()
+    score_file_info()
