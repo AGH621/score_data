@@ -116,13 +116,34 @@ def lyrics(score_dictionary, my_metadata):
 
 #
 #-----------------------------------------------------------------------------------------------
-def chords(score_dictionary, my_metadata):
+def chords_symbols(score_dictionary, my_metadata):
     """
-    Return True if a score has chord symbols, False if not
+    Return any chords symbols found in a score.
     """
-    pass
-
-
+    for next_score in score_dictionary:
+        parsed = score_dictionary[next_score]['File Information']['Stream']
+        score_dictionary[next_score]['Other']['Chords'] = {'All': {}}
+        
+        #score_notes = parsed.recurse().getElementsByClass(harmony.ChordSymbol)
+        #for next_note in score_notes:
+            #print(f"{next_score}: {next_note.figure}")
+        
+        for i, next_part in enumerate(parsed.parts):
+            part_chords = next_part.recurse().getElementsByClass(harmony.ChordSymbol)
+            
+            
+            if part_chords:
+                chord_list = []
+                for next_chord in part_chords:
+                    chord_list.append(next_chord.figure)
+                    
+                score_dictionary[next_score]['Other']['Chords']['All'].update({'Part '+ str(i+1): chord_list})
+            
+            else:
+                score_dictionary[next_score]['Other']['Chords']['All'].update({'Part '+ str(i+1): None})
+                
+    #pprint(score_dictionary)
+    return score_dictionary
 
 #
 #-----------------------------------------------------------------------------------------------
@@ -146,5 +167,7 @@ if __name__ == '__main__':
     measure_length(score_dictionary, my_metadata)
     repeats(score_dictionary, my_metadata)
     lyrics(score_dictionary, my_metadata)
+    chords_symbols(score_dictionary, my_metadata)
+    
     
     
