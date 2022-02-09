@@ -138,11 +138,19 @@ def chords_symbols(score_dictionary, my_metadata):
                     chord_list.append(next_chord.figure)
                     
                 score_dictionary[next_score]['Other']['Chords']['All'].update({'Part '+ str(i+1): chord_list})
+                
+                symbol_list = []
+                for next_part in score_dictionary[next_score]['Other']['Chords']['All']:
+                    for next_symbol in score_dictionary[next_score]['Other']['Chords']['All'][next_part]:
+                        symbol_list.append(next_symbol)
+        
+                score_dictionary[next_score]['Other']['Chords'].update({'Types': list(set(symbol_list))})
             
             else:
                 score_dictionary[next_score]['Other']['Chords']['All'].update({'Part '+ str(i+1): None})
-                
-    #pprint(score_dictionary)
+                score_dictionary[next_score]['Other']['Chords'].update({'Types': None})
+          
+    pprint(score_dictionary)
     return score_dictionary
 
 #
