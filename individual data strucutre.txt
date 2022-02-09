@@ -62,7 +62,7 @@ TODO:   1) Decide whether score variation should include Music21 stream objects
           Length:   in measures,
           Repeats:  type,    
           Form:     type,        # if possible
-          Lyrics:   list,
+          Lyrics:   string,
           Chords:   boolean      # ???
           Slurs:    number and length  
         }

@@ -93,7 +93,7 @@ def form(score_dictionary, my_metadata):
     """
     Figure out the form of a piece.  NOTE: This may not be possible.
     """
-    raise NotImplementedError ("Unknown how to calculate in Music21")
+    raise NotImplementedError ("Unknown how to determine using Music21")
 
 #
 #-----------------------------------------------------------------------------------------------
@@ -101,9 +101,18 @@ def lyrics(score_dictionary, my_metadata):
     """
     Extract the lyrics from each score.
     """
-    pass    
+    for next_score in score_dictionary:
+        parsed = score_dictionary[next_score]['File Information']['Stream']
+        
+        s_lyrics = text.assembleLyrics(parsed)    
+        
+        if s_lyrics:
+            score_dictionary[next_score]['Other']['Lyrics'] = s_lyrics
+        else:
+            score_dictionary[next_score]['Other']['Lyrics'] = None
 
-
+    #pprint(score_dictionary)
+    return score_dictionary
 
 #
 #-----------------------------------------------------------------------------------------------
@@ -136,5 +145,6 @@ if __name__ == '__main__':
     number_of_parts(score_dictionary, my_metadata)
     measure_length(score_dictionary, my_metadata)
     repeats(score_dictionary, my_metadata)
+    lyrics(score_dictionary, my_metadata)
     
     
