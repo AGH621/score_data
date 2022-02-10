@@ -180,8 +180,7 @@ def ties(score_dictionary, my_metadata):
     """
     for next_score in score_dictionary:
         parsed = score_dictionary[next_score]['File Information']['Stream']
-        
-        
+
         tie_count = 0
         lengths = []
 

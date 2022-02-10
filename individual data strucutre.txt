@@ -65,7 +65,8 @@ TODO:   1) Decide whether score variation should include Music21 stream objects
           Lyrics:   string,
           Chords:   {All: Part X: list of chord symbols
                      Type: set of chords:appearance dictionaries}
-          Slurs:    number and length  
+          Slurs:    { Number:  number
+                      Lengths:  list}  
         }
     }
 }

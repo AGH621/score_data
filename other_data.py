@@ -67,7 +67,11 @@ def measure_length(score_dictionary, my_metadata):
 #-----------------------------------------------------------------------------------------------
 def repeats(score_dictionary, my_metadata):
     """
-    Figure out whether a score has repeats and what type they are.
+    Figure out whether a score has repeats.
+    
+    Can use [score].recurse().spanners to locate ending repeats:
+        la bamba: <music21.spanner.RepeatBracket 1 <music21.stream.Measure 22 offset=42.0><music21.stream.Measure 23 offset=44.0>>
+        la bamba: <music21.spanner.RepeatBracket 2 <music21.stream.Measure 24 offset=46.0>>
     """
     for next_score in score_dictionary:
         parsed = score_dictionary[next_score]['File Information']['Stream']
@@ -150,7 +154,7 @@ def chords_symbols(score_dictionary, my_metadata):
                 score_dictionary[next_score]['Other']['Chords']['All'].update({'Part '+ str(i+1): None})
                 score_dictionary[next_score]['Other']['Chords'].update({'Types': None})
           
-    pprint(score_dictionary)
+    #pprint(score_dictionary)
     return score_dictionary
 
 #
@@ -159,9 +163,39 @@ def slurs(score_dictionary, my_metadata):
     """
     Return the number of slurs in a score and the lengths of each.
     """
-    pass
+    for next_score in score_dictionary:
+        parsed = score_dictionary[next_score]['File Information']['Stream']
+        score_dictionary[next_score]['Other']['Slurs'] = {}
+        
+        slur_count = 0
+        slur_length = []
+        
+        #for i, next_part in enumerate(parsed.parts):
+            #part_slur = next_part.recurse().spanners
+            #print(f"{next_score}: {part_slur}")
+        
+        #for slur in parsed.recurse().spanners:
+            #print(f"{next_score}: {slur}")
 
+        for el in parsed.recurse().getElementsByClass(spanner.Slur):
+            #print(f"{next_score}: {el.getSpannedElements()}") 
+            slur_count +=1
+            
+            if len(el) not in slur_length:
+                slur_length.append(len(el))
+            
+        #print(f"{next_score}: {slur_count} - {slur_length}")
 
+        if slur_count != 0:
+            score_dictionary[next_score]['Other']['Slurs']['Number'] = slur_count
+            score_dictionary[next_score]['Other']['Slurs']['Lengths'] = slur_length
+            
+        else:
+            score_dictionary[next_score]['Other']['Slurs']['Number'] = None
+            score_dictionary[next_score]['Other']['Slurs']['Lengths'] = None
+            
+    #pprint(score_dictionary)
+    return score_dictionary
 
 #                                           MAIN
 #-----------------------------------------------------------------------------------------------
@@ -176,6 +210,9 @@ if __name__ == '__main__':
     repeats(score_dictionary, my_metadata)
     lyrics(score_dictionary, my_metadata)
     chords_symbols(score_dictionary, my_metadata)
+    slurs(score_dictionary, my_metadata)
     
+    pprint(score_dictionary)
+    pickle_it(score_dictionary, pickle_path=SCORE_DATAPATH, text_path=SCORE_LOGPATH)
     
     
