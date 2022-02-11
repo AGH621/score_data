@@ -139,7 +139,7 @@ def value_types(score_dictionary, my_metadata):
     Take the lists in the 'All Values' sub-dictionary and transform them into sets to eliminate duplicates.  
     This is the set of all the different note values in the piece.  Turn the set into a list and add as a separate sub-dictionary.
     
-    TODO: Get a count of each type of note.  Make Value Types a list of tuples with (note value, number of note value)
+    TODO: Integrate this function into value_list()
     """
     for next_score in score_dictionary:
         value_list = []
@@ -147,9 +147,22 @@ def value_types(score_dictionary, my_metadata):
             for next_note in score_dictionary[next_score]['Rhythm']['Values']['All'][next_part]:
                 value_list.append(next_note)
                 
-        score_dictionary[next_score]['Rhythm']['Values'].update({'Types': list(set(value_list))})
+        #score_dictionary[next_score]['Rhythm']['Values'].update({'Types': list(set(value_list))})
+        
+        # Set up dictionary for unique letter names
+        score_dictionary[next_score]['Rhythm']['Values'].update({'Types': {}})
+
+        # Count instances of each letter.  
+        for next_note in set(value_list):
+            note_count = 0
+            for next_value in value_list:
+                if next_note == next_value:
+                    note_count += 1
+
+            # Add letter and count to dictionary
+            score_dictionary[next_score]['Rhythm']['Values']['Types'].update({next_note: note_count})
     
-    #pprint(score_dictionary)
+    pprint(score_dictionary)
     return score_dictionary
 #
 #-----------------------------------------------------------------------------------------------

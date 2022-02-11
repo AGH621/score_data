@@ -130,18 +130,20 @@ def melody_range(score_dictionary, my_metadata):
 def letter_names(score_dictionary, my_metadata):
     """
     Get the letter names for each part of each score.
-    
-    TODO: Count the number of each note.
     """
+    # Parse the scores and set up the dictionaries.
     for next_score in score_dictionary:
         parsed = score_dictionary[next_score]['File Information']['Stream']
         score_dictionary[next_score]['Pitch']['Letter Names'] = {'All': {}}
         
         for i, next_part in enumerate(parsed.parts):
+            
+            # If a score is unpitched we fill in the dictionary entries with None.
             if score_dictionary[next_score]['Pitch']['Key Signature'] == 'Unpitched':
                 score_dictionary[next_score]['Pitch']['Letter Names']['All'].update({'Part '+ str(i+1): None})
                 score_dictionary[next_score]['Pitch']['Letter Names'].update({'Types': None})
 
+            # Otherwise the score has pitches and needs processing.
             else:
                 # List to store notes
                 note_list = []
@@ -155,102 +157,136 @@ def letter_names(score_dictionary, my_metadata):
                     # We take the last character of the string
                     only_letter = str(next_note).split('.')[-1].split()[-1].strip('>')
                     note_list.append(only_letter)
-                #print(f"{next_score}{next_part}: {note_list}")
+                
+                # Add list of letter names for each part to dictionary.
                 score_dictionary[next_score]['Pitch']['Letter Names']['All'].update({'Part '+ str(i+1): note_list})
-        
+
+                # Create a list of all letters for counting appearances.
                 letter_list = []
                 for next_part in score_dictionary[next_score]['Pitch']['Letter Names']['All']:
                     for next_note in score_dictionary[next_score]['Pitch']['Letter Names']['All'][next_part]:
                         letter_list.append(next_note)
-                
-                score_dictionary[next_score]['Pitch']['Letter Names'].update({'Types': list(set(letter_list))})
 
-    #pprint(score_dictionary)
+                # Set up dictionary for unique letter names
+                score_dictionary[next_score]['Pitch']['Letter Names'].update({'Types': {}})
+
+                # Count instances of each letter.  
+                for next_note in set(letter_list):
+                    note_count = 0
+                    for next_letter in letter_list:
+                        if next_note == next_letter:
+                            note_count += 1
+
+                    # Add letter and count to dictionary
+                    score_dictionary[next_score]['Pitch']['Letter Names']['Types'].update({next_note: note_count})
+
     return score_dictionary
 #
 #-----------------------------------------------------------------------------------------------
 def solfege_names(score_dictionary, my_metadata):
     """
     Get the solfege names for each part of each score.
-    
-    TODO: Count the number of each syllable.
     """
+    # Parse the scores and set up the dictionaries
     for next_score in score_dictionary:
         parsed = score_dictionary[next_score]['File Information']['Stream']
         score_dictionary[next_score]['Pitch']['Solfege'] = {'All': {}}
         
-        
-        
         for i, next_part in enumerate(parsed.parts):
+            
+            # If a score is unpitched we fill in the dictionary entries with None
             if score_dictionary[next_score]['Pitch']['Key Signature'] == 'Unpitched':
                 score_dictionary[next_score]['Pitch']['Solfege']['All'].update({'Part '+ str(i+1): None})
                 score_dictionary[next_score]['Pitch']['Solfege'].update({'Types': None})
-                
+            
+            # Pitched scores need to be processed
             else:
-                #print(f"{next_score} - {next_part}: {score_dictionary[next_score]['Pitch']['Key Signature']}")
+                # Create a Music21 key object to use for solfege calculation
                 letter_key = score_dictionary[next_score]['Pitch']['Key Signature'].split()[0]
-                #print(f"{next_score} - {next_part}: {letter_key}")
                 m21_key = key.Key(letter_key)
-                #print(f"{next_score} - {next_part}: {type(m21_key)}")
                 
+                # Use Music21 solfege function calculate the syllables for each part of each score
                 solfege_list = []
                 for next_list in score_dictionary[next_score]['Pitch']['Letter Names']['All']:
-                    #print(f"{next_score}: {score_dictionary[next_score]['Pitch']['Letter Names']['All'][next_list]}")
                     
                     for next_note in score_dictionary[next_score]['Pitch']['Letter Names']['All'][next_list]:
                         sol_note = m21_key.solfeg(next_note)
-                        #print(f"{next_score}: {solfege}")
                         solfege_list.append(sol_note)
                         
                 score_dictionary[next_score]['Pitch']['Solfege']['All'].update({'Part '+ str(i+1): solfege_list})
                 
+                # Create a master syllable list for counting appearances
                 total_sol = []
                 for next_part in score_dictionary[next_score]['Pitch']['Solfege']['All']:
                     for next_note in score_dictionary[next_score]['Pitch']['Solfege']['All'][next_part]:
                         total_sol.append(next_note)
-                
-                score_dictionary[next_score]['Pitch']['Solfege'].update({'Types': list(set(total_sol))})
-                
 
-    #pprint(score_dictionary)
+                # Set up dictionary for unique solfege syllables
+                score_dictionary[next_score]['Pitch']['Solfege'].update({'Types': {}})
+
+                # Count instances of each syllable  
+                for next_note in set(total_sol):
+                    sol_count = 0
+                    for next_syll in total_sol:
+                        if next_note == next_syll:
+                            sol_count += 1
+
+                    # Add syllable and count to dictionary
+                    score_dictionary[next_score]['Pitch']['Solfege']['Types'].update({next_note: sol_count})
+
     return score_dictionary
 #
 #-----------------------------------------------------------------------------------------------
 def intervals(score_dictionary, my_metadata):
     """
     Get the solfege names for each part of each score.
-    
-    TODO: Count the number of each interval.
     """
+    # Parse the scores and set up the dictionaries
     for next_score in score_dictionary:
         parsed = score_dictionary[next_score]['File Information']['Stream']
         score_dictionary[next_score]['Pitch']['Intervals'] = {'All': {}}
         
         for i, next_part in enumerate(parsed.parts):
+            
+            # If a score is unpitched we fill in the dictionary entries with None
             if score_dictionary[next_score]['Pitch']['Key Signature'] == 'Unpitched':
                 score_dictionary[next_score]['Pitch']['Intervals']['All'].update({'Part '+ str(i+1): None})
                 score_dictionary[next_score]['Pitch']['Intervals'].update({'Types': None})
 
+            # Pitched scores need to be processed
             else:
                 # List to store notes
                 interval_list = []
             
-                # Flatten the part and get the Note attribute of the M21 note class.  
+                # Flatten the part and get the Note attribute of the Music21 note class.  
                 our_notes = next_part.flat.getElementsByClass(note.Note)
                 
+                # Use Music21 to calculate the intervals (Unknown why this is part of the segmentByRests class)
                 the_intervals = analysis.segmentByRests.Segmenter.getIntervalList(our_notes)
                 
+                # Make the list with friendly names and add it
                 interval_list = [x.name for x in the_intervals]
                 score_dictionary[next_score]['Pitch']['Intervals']['All'].update({'Part '+ str(i+1): interval_list})
-                
+
+                # Create a master interval list for counting appearances
                 total_int = []
                 for next_part in score_dictionary[next_score]['Pitch']['Intervals']['All']:
                     for next_int in score_dictionary[next_score]['Pitch']['Intervals']['All'][next_part]:
                         total_int.append(next_int)
-                
-                score_dictionary[next_score]['Pitch']['Intervals'].update({'Types': list(set(total_int))})
-    
-    #pprint(score_dictionary)
+
+                # Set up dictionary for unique intervals
+                score_dictionary[next_score]['Pitch']['Intervals'].update({'Types': {}})
+
+                # Count instances of each syllable  
+                for next_int in set(total_int):
+                    int_count = 0
+                    for next_dis in total_int:
+                        if next_int == next_dis:
+                            int_count += 1
+
+                    # Add syllable and count to dictionary
+                    score_dictionary[next_score]['Pitch']['Intervals']['Types'].update({next_int: int_count})
+
     return score_dictionary
 
 #                                           MAIN

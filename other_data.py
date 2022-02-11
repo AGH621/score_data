@@ -122,39 +122,54 @@ def lyrics(score_dictionary, my_metadata):
 #-----------------------------------------------------------------------------------------------
 def chords_symbols(score_dictionary, my_metadata):
     """
-    Return any chords symbols found in a score.
+    Find scores with chord symbols using Music21.  Iterate through scores with chords and list all the chord symbols in each part.  
+    Count the number of each specific chord.
+    
+    Returns (as a part of the Score Dictionary):
+        1) Complete list of all chords for each part.
+        2) A set of unique chords with its number of occurances.
+        3) If there are no chords the dictionary entries are None.
     """
+    # Parse each score and set up the dictionary to store the data
     for next_score in score_dictionary:
         parsed = score_dictionary[next_score]['File Information']['Stream']
         score_dictionary[next_score]['Other']['Chords'] = {'All': {}}
         
-        #score_notes = parsed.recurse().getElementsByClass(harmony.ChordSymbol)
-        #for next_note in score_notes:
-            #print(f"{next_score}: {next_note.figure}")
-        
+        # Iterate through each part and extract the chord symbols
         for i, next_part in enumerate(parsed.parts):
             part_chords = next_part.recurse().getElementsByClass(harmony.ChordSymbol)
-            
-            
+
+            # Collect chords into a list
             if part_chords:
                 chord_list = []
                 for next_chord in part_chords:
                     chord_list.append(next_chord.figure)
-                    
+                
+                # Add the list(s) to the dictionary
                 score_dictionary[next_score]['Other']['Chords']['All'].update({'Part '+ str(i+1): chord_list})
                 
+                # Create a list of chords in all parts to identify and count chord appearances
                 symbol_list = []
                 for next_part in score_dictionary[next_score]['Other']['Chords']['All']:
                     for next_symbol in score_dictionary[next_score]['Other']['Chords']['All'][next_part]:
                         symbol_list.append(next_symbol)
-        
-                score_dictionary[next_score]['Other']['Chords'].update({'Types': list(set(symbol_list))})
-            
+                
+                # Set up the dictionary for unique chord types
+                score_dictionary[next_score]['Other']['Chords'].update({'Types': {}})
+
+                # Count the number of each unique chord type and add it.
+                for next_chord in set(symbol_list):
+                    chord_count = 0
+                    for next_sym in symbol_list:
+                        if next_chord == next_sym:
+                            chord_count += 1
+                    score_dictionary[next_score]['Other']['Chords']['Types'].update({next_chord: chord_count})
+                
+            # If there are no chord symbols, set dictionary values to None
             else:
                 score_dictionary[next_score]['Other']['Chords']['All'].update({'Part '+ str(i+1): None})
                 score_dictionary[next_score]['Other']['Chords'].update({'Types': None})
-          
-    #pprint(score_dictionary)
+
     return score_dictionary
 
 #
