@@ -3,16 +3,11 @@
 
 ### Summary ###
 
-* Data module improvements
 * Driving code for data modules
 * Streams for family scores (new branch)
 * About data modules
 * Clean data & error handling
 
-
-### Data Module ###
-
-* Combine the note value functions together
 
 ### About Data Module ###
 
