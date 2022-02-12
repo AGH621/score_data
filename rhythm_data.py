@@ -129,6 +129,26 @@ def value_list(score_dictionary, my_metadata):
                 
             # Populate the sub-dictionary. Identify each part by its index number +1
             score_dictionary[next_score]['Rhythm']['Values']['All'].update({'Part '+ str(i+1): note_list})
+            
+            value_list = []
+            for next_part in score_dictionary[next_score]['Rhythm']['Values']['All']:
+                for next_note in score_dictionary[next_score]['Rhythm']['Values']['All'][next_part]:
+                    value_list.append(next_note)
+                
+            #score_dictionary[next_score]['Rhythm']['Values'].update({'Types': list(set(value_list))})
+        
+            # Set up dictionary for unique letter names
+            score_dictionary[next_score]['Rhythm']['Values'].update({'Types': {}})
+
+            # Count instances of each letter.  
+            for next_note in set(value_list):
+                note_count = 0
+                for next_value in value_list:
+                    if next_note == next_value:
+                        note_count += 1
+
+                # Add letter and count to dictionary
+                score_dictionary[next_score]['Rhythm']['Values']['Types'].update({next_note: note_count})
         
     #pprint(score_dictionary)
     return score_dictionary
@@ -233,7 +253,7 @@ if __name__ == '__main__':
     time_signature(score_dictionary, my_metadata)
     meter(score_dictionary, my_metadata)
     value_list(score_dictionary, my_metadata)
-    value_types(score_dictionary, my_metadata)
+    #value_types(score_dictionary, my_metadata)
     anacrusis(score_dictionary, my_metadata)
     ties(score_dictionary, my_metadata)
 
