@@ -23,13 +23,12 @@
 
 ### Clean Data ###
 
-* Add musicxml files to directory in chunks
+* Add musicxml files to directory one letter at a time
 * Write debugging/error handling code for each problem
 * Do above for any errors thought of but not found
 
 ### Family Score Streams ###
 
 * New git branch
-* Have a stream for all scores in the family for specialized searches
-* Experimental not sure adequate use cases
+* Have an upload or filepath for each score in the family
 

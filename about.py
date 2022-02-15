@@ -31,9 +31,18 @@ from music21_globals  import define_corpus
 
 #                                            METHODS
 #-----------------------------------------------------------------------------------------------
-
-
-
+def read_in_data():
+    """
+    Read the Excel spreadsheet containing the About data into a dictionary keyed on the title/family file name.
+    """
+    pass
+#
+#-----------------------------------------------------------------------------------------------
+def merge_dicts():
+    """
+    Merge the imported data dictionary with the Score Dictionary.
+    """
+    pass
 
 
 
