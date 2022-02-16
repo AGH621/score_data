@@ -117,16 +117,26 @@ def score_file_info():
         if ' - ' not in file_name: 
             score_dictionary[file_name] = {'File Information': {}}
             score_dictionary[file_name]['File Information'].update({'Path': score_path})
-            score_dictionary[file_name]['File Information'].update({'Type': ['Lead Sheet']})
+            #score_dictionary[file_name]['File Information'].update({'Family': ['Lead Sheet']})
         
         else:
-            score_type = file_name.split(' - ')
-            sc_family.append(score_type)
+            sc_family.append({file_name: score_path})
+            #if 'Family' in score_dictionary[file_name]['File Information'].keys():
+                #print('ok')
+    
+    
+        
     
     # Step 4: Add the variant scores.
-    for next_sc in sc_family:
-        if next_sc[0] in score_dictionary:
-            score_dictionary[next_sc[0]]['File Information']['Type'].append(next_sc[-1].title())
+    for x in range(len(sc_family)):
+        for key in sc_family[x]:
+            org_sc = key.split(' - ')
+            if org_sc[0] in score_dictionary:
+                if 'Family' not in score_dictionary[org_sc[0]]['File Information'].keys():
+                    score_dictionary[org_sc[0]]['File Information'].update({'Family': {org_sc[-1].title(): sc_family[x][key]}})
+                    
+                else:
+                    score_dictionary[org_sc[0]]['File Information']['Family'].update({org_sc[-1].title(): sc_family[x][key]})
 
     # Step 5: Iterate through each file in the Score Dictionary.
     for next_score in score_dictionary:
@@ -146,8 +156,7 @@ def score_file_info():
     for next_score in score_dictionary:
         parse_score = corpus.manager.parse(score_dictionary[next_score]['File Information']['Path'])
         score_dictionary[next_score]['File Information']['Stream'] = parse_score
-
-    pprint(score_dictionary)
+    
     pickle_it(score_dictionary, pickle_path=SCORE_DATAPATH, text_path=SCORE_LOGPATH)
         
     return score_dictionary
@@ -211,7 +220,8 @@ def update_metadata_cache():
     # Check 1: Have files been added or deleted? 
     # Step 1: Get the file paths from the xml directory and put them in a list.
     paths = Path(CORPUS_FILEPATH).glob('**/*.musicxml')
-    files = [x for x in paths if x.is_file()]
+    files = [x for x in paths if x.is_file() and ' - ' not in str(x)]
+    
     
     # Step 2: Extract the file paths from the Score Dictionary and put them in a list.
     score_dictionary = unpickle_it(pickle_path=SCORE_DATAPATH, be_verbose=False)
@@ -219,10 +229,17 @@ def update_metadata_cache():
     for next_score in score_dictionary:
         score_path = score_dictionary[next_score]['File Information']['Path']
         score_list.append(Path(score_path))
-    
+
+
     # Step 3: Sort the lists.
     score_list.sort()
     files.sort()
+    
+    #print(f"Score List: {score_list}")
+    
+    #for next_path in files:
+        #if next_path not in score_list:
+            #print(f"File Path: {next_path}")
     
     # Step 4: Compare the lists.  If they are the same, proceed to Check 2.   
     if score_list == files:
@@ -235,15 +252,24 @@ def update_metadata_cache():
             m_float_sec = next_file.stat().st_mtime
             file_time = time.ctime(m_float_sec)
             file_mod_time.update({str(next_file): file_time})
+        
+        #pprint(file_mod_time)
 
         # Step 2: Retreive the "Modified On" time from the Score Dictionary, put in a dictionary.
         score_mod_time = {}
         for next_score in score_dictionary:
             score_time = score_dictionary[next_score]['File Information']['Modified On']
             score_mod_time.update({score_dictionary[next_score]['File Information']['Path']: score_time})
+        
+        #pprint(score_mod_time)
 
         # Step 3: Use the deepdiff library to compare the 2 dictionaries
         diff = DeepDiff(score_mod_time, file_mod_time)
+        
+        #for next_entry in diff:
+            #for x in range(len(diff[next_entry])):
+                #print(f"{diff[next_entry][x]}\n")
+
         
         # Step 4: If deepdiff returns a populated dictionary, then modifications have occurred.  Rebuild the metadata and Score Dictionary.
         if len(diff) > 0:
@@ -271,15 +297,18 @@ def update_metadata_cache():
         
         # Now rebuild
         build_metadata_cache()
-        score_file_info()        
+        score_file_info()     
 
 #                                           MAIN
 #-----------------------------------------------------------------------------------------------
 if __name__ == '__main__':
     
-    reset_corpus()
-    define_corpus()
-    build_metadata_cache()
+    #reset_corpus()
+    #define_corpus()
+    #build_metadata_cache()
 
-    #update_metadata_cache()
-    score_file_info()
+    #score_dictionary = score_file_info()
+    update_metadata_cache()
+
+    #pprint(score_dictionary)
+    
