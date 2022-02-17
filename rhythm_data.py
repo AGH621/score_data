@@ -221,11 +221,11 @@ if __name__ == '__main__':
     
     time_signature(score_dictionary, my_metadata)
     meter(score_dictionary, my_metadata)
-    value_list(score_dictionary, my_metadata)
-    anacrusis(score_dictionary, my_metadata)
-    ties(score_dictionary, my_metadata)
+    #value_list(score_dictionary, my_metadata)
+    #anacrusis(score_dictionary, my_metadata)
+    #ties(score_dictionary, my_metadata)
 
     pprint(score_dictionary)
-    pickle_it(score_dictionary, pickle_path=SCORE_DATAPATH, text_path=SCORE_LOGPATH)
+    #pickle_it(score_dictionary, pickle_path=SCORE_DATAPATH, text_path=SCORE_LOGPATH)
     
     

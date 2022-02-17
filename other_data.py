@@ -77,7 +77,11 @@ def repeats(score_dictionary, my_metadata):
         parsed = score_dictionary[next_score]['File Information']['Stream']
         
         # Gives the true length of piece if all repeats are performed
-        repeats = len(repeat.Expander(parsed.parts[0]).measureMap())
+        #repeats = len(repeat.Expander(parsed.parts[0]).measureMap())
+        
+        repeats = parsed.parts[0].recurse().getElementsByClass(repeat.RepeatMark)
+        for next_thing in repeats:
+            print(f"{next_score}: {next_thing} - {len(repeats)}")
         
         # The number of printed measures in the score if no repeats were performed
         s_length = score_dictionary[next_score]['Other']['Length']
@@ -227,7 +231,7 @@ if __name__ == '__main__':
     chords_symbols(score_dictionary, my_metadata)
     slurs(score_dictionary, my_metadata)
     
-    pprint(score_dictionary)
-    pickle_it(score_dictionary, pickle_path=SCORE_DATAPATH, text_path=SCORE_LOGPATH)
+    #pprint(score_dictionary)
+    #pickle_it(score_dictionary, pickle_path=SCORE_DATAPATH, text_path=SCORE_LOGPATH)
     
     
