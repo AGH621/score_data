@@ -35,7 +35,7 @@ from music21_globals  import define_corpus
 
 #                                            METHODS
 #-----------------------------------------------------------------------------------------------
-def time_signature(score_dictionary, my_metadata):
+def time_signature(a_dictionary, the_metadata, score):
     """
     Extract the time signature information for each score and add to its dictionary.
     
@@ -43,172 +43,158 @@ def time_signature(score_dictionary, my_metadata):
     through getElementsByClass(meter.TimeSignature).  Is there a way to extrapolate the information from other properties?
     """
     
-    # Add the rhythm sub-dictionary.
-    for next_score in score_dictionary:
-        score_dictionary[next_score]['Rhythm'] = {}
-        
-        # Try to get the time signatures out of the metadata.  If the time signature is hidden, this method will fail.
-        for x in range(len(my_metadata)):
-            if my_metadata[x].metadata.sourcePath == score_dictionary[next_score]['File Information']['Path']:
-                if my_metadata[x].metadata.timeSignatures != []:
-                    score_dictionary[next_score]['Rhythm'].update({'Time Signature': my_metadata[x].metadata.timeSignatures})
-                else:
-                    score_dictionary[next_score]['Rhythm'].update({'Time Signature': 'hidden'})
 
-    return score_dictionary
+    # Try to get the time signatures out of the metadata.  If the time signature is hidden, this method will fail.
+    for x in range(len(the_metadata)):
+        if the_metadata[x].metadata.sourcePath == a_dictionary[score]['File Information']['Path']:
+            if the_metadata[x].metadata.timeSignatures != []:
+                a_dictionary[score]['Rhythm'].update({'Time Signature': the_metadata[x].metadata.timeSignatures})
+            else:
+                a_dictionary[score]['Rhythm'].update({'Time Signature': 'hidden'})
+
+    return a_dictionary
 #
 #-----------------------------------------------------------------------------------------------
-def meter(score_dictionary, my_metadata):
+def meter(a_dictionary, score):
     """
     Using the time signature, figure out the score's meter.  We are working under the principle that there are three meters: duple, triple, and mixed.
     """
     # Figure out the meter based on the time signature.
-    for next_score in score_dictionary:
-        if score_dictionary[next_score]['Rhythm']['Time Signature'] != 'hidden':
-            if len(score_dictionary[next_score]['Rhythm']['Time Signature']) == 1:
-                top_num = score_dictionary[next_score]['Rhythm']['Time Signature'][0][0]
-                if int(top_num) % 3 == 0:
-                    score_dictionary[next_score]['Rhythm']['Meter'] = 'triple'
-                else:
-                    score_dictionary[next_score]['Rhythm']['Meter'] = 'duple'
-            else:
-                time_sigs = score_dictionary[next_score]['Rhythm']['Time Signature']
-                m_list = []
-                for n in range(len(time_sigs)):
-                    top = time_sigs[n][0]
-                    if int(top) % 3 == 0:
-                        m_list.append('triple')
-                    else:
-                        m_list.append('duple')
-                
-                if len(set(m_list)) == 1:
-                    score_dictionary[next_score]['Rhythm']['Meter'] = str(m_list)
-                else:
-                    score_dictionary[next_score]['Rhythm']['Meter'] = 'mixed'
-        else:
-            score_dictionary[next_score]['Rhythm']['Meter'] = 'unknown'
     
-    #pprint(score_dictionary)
-    return score_dictionary
+    if a_dictionary[score]['Rhythm']['Time Signature'] != 'hidden':
+        if len(a_dictionary[score]['Rhythm']['Time Signature']) == 1:
+            top_num = a_dictionary[score]['Rhythm']['Time Signature'][0][0]
+            if int(top_num) % 3 == 0:
+                a_dictionary[score]['Rhythm']['Meter'] = 'triple'
+            else:
+                a_dictionary[score]['Rhythm']['Meter'] = 'duple'
+        else:
+            time_sigs = a_dictionary[score]['Rhythm']['Time Signature']
+            m_list = []
+            for n in range(len(time_sigs)):
+                top = time_sigs[n][0]
+                if int(top) % 3 == 0:
+                    m_list.append('triple')
+                else:
+                    m_list.append('duple')
+            
+            if len(set(m_list)) == 1:
+                a_dictionary[score]['Rhythm']['Meter'] = str(m_list)
+            else:
+                a_dictionary[score]['Rhythm']['Meter'] = 'mixed'
+    else:
+        a_dictionary[score]['Rhythm']['Meter'] = 'unknown'
+
+    return a_dictionary
 #
 #-----------------------------------------------------------------------------------------------
-def value_list(score_dictionary, my_metadata):
+def value_list(a_dictionary, score):
     """
     Extract the note/rest value list from the leadsheet score and enter it into the score dictionary.
     Each part will need its own list.
     """
-    # Parse each score from its stream.  Would like to break these two lines out into their own function, because it will be needs throughout the program
-    for next_score in score_dictionary:    
-        parsed = score_dictionary[next_score]['File Information']['Stream']
+    # Parse each score from its stream.   
+    parsed = a_dictionary[score]['File Information']['Stream']
+    
+    # Add the All Values sub-dictionary to each score's data structure.
+    a_dictionary[score]['Rhythm'].update({'Values': {'All': {}}})
+    
+    # Enumerate through the parsed parts because we need both the part and it's index number
+    for i, next_part in enumerate(parsed.parts):
         
-        # Add the All Values sub-dictionary to each score's data structure.
-        #score_dictionary[next_score]['Rhythm']['Values'].update({'All': {}})
-        score_dictionary[next_score]['Rhythm'].update({'Values': {'All': {}}})
+        # List to store notes
+        note_list = []
         
-        # Enumerate through the parsed parts because we need both the part and it's index number
-        for i, next_part in enumerate(parsed.parts):
-            
-            # List to store notes
-            note_list = []
-            
-            # Recurse the part and get the GeneralNote attribute of the M21 note class.  
-            #General note is the only class attribute which accurately lists both notes and rests.
-            score_notes = next_part.recurse().getElementsByClass(note.GeneralNote)
-            
-            # Iterate through the notes to extract the parts we need.
-            for next_note in score_notes:
-                
-                # Notes we take the last two words of the string
-                if next_note.fullName.endswith('Note'):
-                    note_val = next_note.fullName.split()[4] + ' ' + next_note.fullName.split()[5]
-                    note_list.append(note_val)
-                
-                # Rests we take the whole string. (We ignore chords in this function)   
-                elif next_note.fullName.endswith('Rest'):
-                    note_list.append(next_note.fullName)
-                
-            # Populate the sub-dictionary. Identify each part by its index number +1
-            score_dictionary[next_score]['Rhythm']['Values']['All'].update({'Part '+ str(i+1): note_list})
-            
-            value_list = []
-            for next_part in score_dictionary[next_score]['Rhythm']['Values']['All']:
-                for next_note in score_dictionary[next_score]['Rhythm']['Values']['All'][next_part]:
-                    value_list.append(next_note)
-                
-            #score_dictionary[next_score]['Rhythm']['Values'].update({'Types': list(set(value_list))})
+        # Recurse the part and get the GeneralNote attribute of the M21 note class.  
+        # General note is the only class attribute which accurately lists both notes and rests.
+        score_notes = next_part.recurse().getElementsByClass(note.GeneralNote)
         
-            # Set up dictionary for unique letter names
-            score_dictionary[next_score]['Rhythm']['Values'].update({'Types': {}})
+        # Iterate through the notes to extract the parts we need.
+        for next_note in score_notes:
+            
+            # Notes we take the last two words of the string
+            if next_note.fullName.endswith('Note'):
+                note_val = next_note.fullName.split()[4] + ' ' + next_note.fullName.split()[5]
+                note_list.append(note_val)
+            
+            # Rests we take the whole string. (We ignore chords in this function)   
+            elif next_note.fullName.endswith('Rest'):
+                note_list.append(next_note.fullName)
+            
+        # Populate the sub-dictionary. Identify each part by its index number +1
+        a_dictionary[score]['Rhythm']['Values']['All'].update({'Part '+ str(i+1): note_list})
+        
+        value_list = []
+        for next_part in a_dictionary[score]['Rhythm']['Values']['All']:
+            for next_note in a_dictionary[score]['Rhythm']['Values']['All'][next_part]:
+                value_list.append(next_note)
+    
+        # Set up dictionary for unique letter names
+        a_dictionary[score]['Rhythm']['Values'].update({'Types': {}})
 
-            # Count instances of each letter.  
-            for next_note in set(value_list):
-                note_count = 0
-                for next_value in value_list:
-                    if next_note == next_value:
-                        note_count += 1
+        # Count instances of each letter.  
+        for next_note in set(value_list):
+            note_count = 0
+            for next_value in value_list:
+                if next_note == next_value:
+                    note_count += 1
 
-                # Add letter and count to dictionary
-                score_dictionary[next_score]['Rhythm']['Values']['Types'].update({next_note: note_count})
-        
-    #pprint(score_dictionary)
-    return score_dictionary
+            # Add letter and count to dictionary
+            a_dictionary[score]['Rhythm']['Values']['Types'].update({next_note: note_count})
+
+    return a_dictionary
 #
 #-----------------------------------------------------------------------------------------------
-
-def anacrusis(score_dictionary, my_metadata):
+def anacrusis(a_dictionary, score):
     """
     Find out if a score has pick-up notes.  Count the number and type of notes used.  Record in Score Dictionary.
     """
-    for next_score in score_dictionary:
-        parsed = score_dictionary[next_score]['File Information']['Stream']
-        
-        try:
-            pickup = repeat.RepeatFinder(parsed).getQuarterLengthOfPickupMeasure()
-            score_dictionary[next_score]['Rhythm']['Anacrusis'] = pickup
-        
-        except repeat.InsufficientLengthException:
-            score_dictionary[next_score]['Rhythm']['Anacrusis'] = 'not available'
+    parsed = a_dictionary[score]['File Information']['Stream']
     
+    try:
+        pickup = repeat.RepeatFinder(parsed).getQuarterLengthOfPickupMeasure()
+        a_dictionary[score]['Rhythm']['Anacrusis'] = pickup
     
-    #pprint(score_dictionary)
-    return score_dictionary
+    except repeat.InsufficientLengthException:
+        a_dictionary[score]['Rhythm']['Anacrusis'] = 'not available'
+
+    return a_dictionary
 #
 #-----------------------------------------------------------------------------------------------
-def ties(score_dictionary, my_metadata):
+def ties(a_dictionary, score):
     """
     Find out if a score has ties.  Count the number of ties and their length. Record all info in Score Dictionary.
     
     TODO: 1) Decide whether the note values in a tie are wanted.
     """
-    for next_score in score_dictionary:
-        parsed = score_dictionary[next_score]['File Information']['Stream']
+    parsed = a_dictionary[score]['File Information']['Stream']
 
-        tie_count = 0
-        lengths = []
+    tie_count = 0
+    lengths = []
 
-        for n in range(len(parsed.recurse().notes)):
-            note = parsed.recurse().notes[n]
+    for n in range(len(parsed.recurse().notes)):
+        note = parsed.recurse().notes[n]
 
-            if note.tie:
-                if note.tie.type == 'start':
-                    tie_count +=1
-                    tie_length = 2
-                
-                if note.tie.type == 'continue':
-                    tie_length += 1
-                
-                if tie_length not in lengths:
-                    lengths.append(tie_length)
+        if note.tie:
+            if note.tie.type == 'start':
+                tie_count +=1
+                tie_length = 2
+            
+            if note.tie.type == 'continue':
+                tie_length += 1
+            
+            if tie_length not in lengths:
+                lengths.append(tie_length)
 
-        if lengths != []:
-            #score_dictionary[next_score]['Rhythm']['Ties']['Lengths'] = lengths
-            score_dictionary[next_score]['Rhythm'].update({'Ties': {'Lengths': lengths}})
-        else:
-            score_dictionary[next_score]['Rhythm'].update({'Ties': {'Lengths': None}})
+    if lengths != []:
+        a_dictionary[score]['Rhythm'].update({'Ties': {'Lengths': lengths}})
+        
+    else:
+        a_dictionary[score]['Rhythm'].update({'Ties': {'Lengths': None}})
 
-        score_dictionary[next_score]['Rhythm']['Ties']['Number'] = tie_count
+    a_dictionary[score]['Rhythm']['Ties']['Number'] = tie_count
 
-    return score_dictionary
+    return a_dictionary
 
 
 #                                           MAIN

@@ -36,21 +36,9 @@ def number_of_parts(a_dictionary, score):
     """
     Get how many parts a score has.
     """
-    """for next_score in score_dictionary:
-        score_dictionary[next_score]['Other'] = {}
-        parsed = score_dictionary[next_score]['File Information']['Stream']
-        
-        num_parts = len(parsed.parts)
-        
-        score_dictionary[next_score]['Other'].update({'Parts': num_parts})
 
-    return score_dictionary"""
-    
-    #a_dictionary[score]['Other'] = {}
     parsed = a_dictionary[score]['File Information']['Stream']
-    
     num_parts = len(parsed.parts)
-    
     a_dictionary[score]['Other'].update({'Parts': num_parts})
     
     return a_dictionary
@@ -61,14 +49,6 @@ def measure_length(a_dictionary, score):
     """
     Get how many measures a score has printed.  Repeats are NOT included in this tally.
     """
-    """for next_score in score_dictionary:
-        parsed = score_dictionary[next_score]['File Information']['Stream']
-
-        m_length = len(parsed.parts[0].getElementsByClass(stream.Measure))
-        
-        score_dictionary[next_score]['Other'].update({'Length': m_length})
-
-    return score_dictionary"""
     
     parsed = a_dictionary[score]['File Information']['Stream']
     m_length = len(parsed.parts[0].getElementsByClass(stream.Measure))
@@ -78,42 +58,38 @@ def measure_length(a_dictionary, score):
     
 #
 #-----------------------------------------------------------------------------------------------
-def repeats(score_dictionary, my_metadata):
+def repeats(a_dictionary, score):
     """
-    Figure out whether a score has repeats.
+    If a score has repeats return the type of repeats.  If it does not return None.
     
     TODO: 
         1) What if a score has both a text repeat and a repeat sign?
         2) What about scores with bracket endings?  How does Music21 handle them?
     """
-    for next_score in score_dictionary:
-        score_dictionary[next_score]['Other'] = {}
-        parsed = score_dictionary[next_score]['File Information']['Stream']
-        
-        # Gives the true length of piece if all repeats are performed
-        text_repeats = parsed.parts[0].recurse().getElementsByClass(repeat.RepeatExpression)
-        bar_repeats = parsed.parts[0].recurse().getElementsByClass(bar.Repeat)
-        
-        if text_repeats:
-            for next_text in text_repeats:
-                #print(f"{next_score}: {next_text.name}")
-        
-                if next_text.name != 'fine' or next_text.name != 'coda':
-                    score_dictionary[next_score]['Other'].update({'Repeats': next_text.name})
-        
-        elif bar_repeats:
-            for next_bar in bar_repeats:
-                #print(f"{next_score}: {next_bar}")
-                score_dictionary[next_score]['Other'].update({'Repeats': 'repeat sign'})
-        
-        else:
-            score_dictionary[next_score]['Other'].update({'Repeats': None})
 
-    return score_dictionary
+    parsed = a_dictionary[score]['File Information']['Stream']
+    
+    # Gives the true length of piece if all repeats are performed
+    text_repeats = parsed.parts[0].recurse().getElementsByClass(repeat.RepeatExpression)
+    bar_repeats = parsed.parts[0].recurse().getElementsByClass(bar.Repeat)
+    
+    if text_repeats:
+        for next_text in text_repeats:
+            if next_text.name != 'fine' or next_text.name != 'coda':
+                a_dictionary[score]['Other'].update({'Repeats': next_text.name})
+    
+    elif bar_repeats:
+        for next_bar in bar_repeats:
+            a_dictionary[score]['Other'].update({'Repeats': 'repeat sign'})
+    
+    else:
+        a_dictionary[score]['Other'].update({'Repeats': None})
+
+    return a_dictionary
 
 #
 #-----------------------------------------------------------------------------------------------
-def form(score_dictionary, my_metadata):
+def form(a_dictionary, score):
     """
     Figure out the form of a piece.  NOTE: This may not be possible.
     """
@@ -121,26 +97,26 @@ def form(score_dictionary, my_metadata):
 
 #
 #-----------------------------------------------------------------------------------------------
-def lyrics(score_dictionary, my_metadata):
+def lyrics(a_dictionary, score):
     """
-    Extract the lyrics from each score.
+    Extract the lyrics from each score and assemble them into words.
+    
+    Returns the first verse worth of lyrics.  Returns None if it is an instrumental score.
     """
-    for next_score in score_dictionary:
-        parsed = score_dictionary[next_score]['File Information']['Stream']
-        
-        s_lyrics = text.assembleLyrics(parsed)    
-        
-        if s_lyrics:
-            score_dictionary[next_score]['Other']['Lyrics'] = s_lyrics
-        else:
-            score_dictionary[next_score]['Other']['Lyrics'] = None
 
-    #pprint(score_dictionary)
-    return score_dictionary
+    parsed = a_dictionary[score]['File Information']['Stream']
+    s_lyrics = text.assembleLyrics(parsed)    
+    
+    if s_lyrics:
+        a_dictionary[score]['Other']['Lyrics'] = s_lyrics
+    else:
+        a_dictionary[score]['Other']['Lyrics'] = None
+
+    return a_dictionary
 
 #
 #-----------------------------------------------------------------------------------------------
-def chords_symbols(score_dictionary, my_metadata):
+def chords_symbols(a_dictionary, score):
     """
     Find scores with chord symbols using Music21.  Iterate through scores with chords and list all the chord symbols in each part.  
     Count the number of each specific chord.
@@ -151,86 +127,75 @@ def chords_symbols(score_dictionary, my_metadata):
         3) If there are no chords the dictionary entries are None.
     """
     # Parse each score and set up the dictionary to store the data
-    for next_score in score_dictionary:
-        parsed = score_dictionary[next_score]['File Information']['Stream']
-        score_dictionary[next_score]['Other']['Chords'] = {'All': {}}
-        
-        # Iterate through each part and extract the chord symbols
-        for i, next_part in enumerate(parsed.parts):
-            part_chords = next_part.recurse().getElementsByClass(harmony.ChordSymbol)
+    
+    parsed = a_dictionary[score]['File Information']['Stream']
+    a_dictionary[score]['Other']['Chords'] = {'All': {}}
+    
+    # Iterate through each part and extract the chord symbols
+    for i, next_part in enumerate(parsed.parts):
+        part_chords = next_part.recurse().getElementsByClass(harmony.ChordSymbol)
 
-            # Collect chords into a list
-            if part_chords:
-                chord_list = []
-                for next_chord in part_chords:
-                    chord_list.append(next_chord.figure)
-                
-                # Add the list(s) to the dictionary
-                score_dictionary[next_score]['Other']['Chords']['All'].update({'Part '+ str(i+1): chord_list})
-                
-                # Create a list of chords in all parts to identify and count chord appearances
-                symbol_list = []
-                for next_part in score_dictionary[next_score]['Other']['Chords']['All']:
-                    for next_symbol in score_dictionary[next_score]['Other']['Chords']['All'][next_part]:
-                        symbol_list.append(next_symbol)
-                
-                # Set up the dictionary for unique chord types
-                score_dictionary[next_score]['Other']['Chords'].update({'Types': {}})
+        # Collect chords into a list
+        if part_chords:
+            chord_list = []
+            for next_chord in part_chords:
+                chord_list.append(next_chord.figure)
+            
+            # Add the list(s) to the dictionary
+            a_dictionary[score]['Other']['Chords']['All'].update({'Part '+ str(i+1): chord_list})
+            
+            # Create a list of chords in all parts to identify and count chord appearances
+            symbol_list = []
+            for next_part in a_dictionary[score]['Other']['Chords']['All']:
+                for next_symbol in a_dictionary[score]['Other']['Chords']['All'][next_part]:
+                    symbol_list.append(next_symbol)
+            
+            # Set up the dictionary for unique chord types
+            a_dictionary[score]['Other']['Chords'].update({'Types': {}})
 
-                # Count the number of each unique chord type and add it.
-                for next_chord in set(symbol_list):
-                    chord_count = 0
-                    for next_sym in symbol_list:
-                        if next_chord == next_sym:
-                            chord_count += 1
-                    score_dictionary[next_score]['Other']['Chords']['Types'].update({next_chord: chord_count})
-                
-            # If there are no chord symbols, set dictionary values to None
-            else:
-                score_dictionary[next_score]['Other']['Chords']['All'].update({'Part '+ str(i+1): None})
-                score_dictionary[next_score]['Other']['Chords'].update({'Types': None})
+            # Count the number of each unique chord type and add it.
+            for next_chord in set(symbol_list):
+                chord_count = 0
+                for next_sym in symbol_list:
+                    if next_chord == next_sym:
+                        chord_count += 1
+                a_dictionary[score]['Other']['Chords']['Types'].update({next_chord: chord_count})
+            
+        # If there are no chord symbols, set dictionary values to None
+        else:
+            a_dictionary[score]['Other']['Chords']['All'].update({'Part '+ str(i+1): None})
+            a_dictionary[score]['Other']['Chords'].update({'Types': None})
 
-    return score_dictionary
+    return a_dictionary
 
 #
 #-----------------------------------------------------------------------------------------------
-def slurs(score_dictionary, my_metadata):
+def slurs(a_dictionary, score):
     """
     Return the number of slurs in a score and the lengths of each.
     """
-    for next_score in score_dictionary:
-        parsed = score_dictionary[next_score]['File Information']['Stream']
-        score_dictionary[next_score]['Other']['Slurs'] = {}
-        
-        slur_count = 0
-        slur_length = []
-        
-        #for i, next_part in enumerate(parsed.parts):
-            #part_slur = next_part.recurse().spanners
-            #print(f"{next_score}: {part_slur}")
-        
-        #for slur in parsed.recurse().spanners:
-            #print(f"{next_score}: {slur}")
+    
+    parsed = a_dictionary[score]['File Information']['Stream']
+    a_dictionary[score]['Other']['Slurs'] = {}
+    
+    slur_count = 0
+    slur_length = []
 
-        for el in parsed.recurse().getElementsByClass(spanner.Slur):
-            #print(f"{next_score}: {el.getSpannedElements()}") 
-            slur_count +=1
-            
-            if len(el) not in slur_length:
-                slur_length.append(len(el))
-            
-        #print(f"{next_score}: {slur_count} - {slur_length}")
+    for el in parsed.recurse().getElementsByClass(spanner.Slur):
+        slur_count +=1
+        
+        if len(el) not in slur_length:
+            slur_length.append(len(el))
 
-        if slur_count != 0:
-            score_dictionary[next_score]['Other']['Slurs']['Number'] = slur_count
-            score_dictionary[next_score]['Other']['Slurs']['Lengths'] = slur_length
-            
-        else:
-            score_dictionary[next_score]['Other']['Slurs']['Number'] = None
-            score_dictionary[next_score]['Other']['Slurs']['Lengths'] = None
-            
-    #pprint(score_dictionary)
-    return score_dictionary
+    if slur_count != 0:
+        a_dictionary[score]['Other']['Slurs']['Number'] = slur_count
+        a_dictionary[score]['Other']['Slurs']['Lengths'] = slur_length
+        
+    else:
+        a_dictionary[score]['Other']['Slurs']['Number'] = None
+        a_dictionary[score]['Other']['Slurs']['Lengths'] = None
+
+    return a_dictionary
 
 #                                           MAIN
 #-----------------------------------------------------------------------------------------------

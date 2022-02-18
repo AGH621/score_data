@@ -13,27 +13,8 @@ Driving code which builds the Score Dictionary, and loads it into the database.
 from music21_globals    import *
 
 from other_data         import *
-
-"""from rhythm_data        import time_signature
-from rhythm_data        import meter
-from rhythm_data        import value_list
-from rhythm_data        import anacrusis
-from rhythm_data        import ties
-
-from pitch_data         import key_signature
-from pitch_data         import clef
-from pitch_data         import melody_range
-from pitch_data         import letter_names
-from pitch_data         import solfege_names
-from pitch_data         import intervals
-
-from other_data         import number_of_parts
-from other_data         import measure_length
-from other_data         import repeats
-from other_data         import lyrics
-from other_data         import chords_symbols
-from other_data         import slurs"""
-                                
+from pitch_data         import *
+from rhythm_data        import *
 
 
 #                                           VARIABLES
@@ -119,15 +100,50 @@ def xxxbuild_single():
 def build_an_entry(dictionary):
     """
     Take the score dictionary with only file information entries, iterate through it to create a full entry.
+    
+    Most of processing time is for generating the pretty print statement.
+    
+    TODO:
+        1) Figure out a way of parsing the scores here rather than in the individual functions.
     """
     
+    my_metadata = access_metadata()
+    
     for next_entry in dictionary:
-        #pprint(dictionary[next_entry])
         
+        # Other musical elements
         dictionary[next_entry]['Other'] = {}
+        
         number_of_parts(dictionary, next_entry)
         measure_length(dictionary, next_entry)
-    
+        repeats(dictionary, next_entry)
+        lyrics(dictionary, next_entry)
+        chords_symbols(dictionary, next_entry)
+        slurs(dictionary, next_entry)
+        
+        # Pitch elements
+        dictionary[next_entry]['Pitch'] = {}
+        
+        key_signature(dictionary, my_metadata, next_entry)
+        find_clef(dictionary, next_entry)
+        melody_range(dictionary, next_entry)
+        letter_names(dictionary, next_entry)
+        solfege_names(dictionary, next_entry)
+        intervals(dictionary, next_entry)
+        
+        # Rhythm elements
+        dictionary[next_entry]['Rhythm'] = {}
+        
+        time_signature(dictionary, my_metadata, next_entry)
+        meter(dictionary, next_entry)
+        value_list(dictionary, next_entry)
+        anacrusis(dictionary, next_entry)
+        ties(dictionary, next_entry)
+        
+        # About elements
+        # will be added at a later time
+        
+    pickle_it(dictionary, pickle_path=SCORE_DATAPATH, text_path=SCORE_LOGPATH)
     pprint(dictionary)
 
 #
