@@ -69,30 +69,33 @@ def repeats(score_dictionary, my_metadata):
     """
     Figure out whether a score has repeats.
     
-    Can use [score].recurse().spanners to locate ending repeats:
-        la bamba: <music21.spanner.RepeatBracket 1 <music21.stream.Measure 22 offset=42.0><music21.stream.Measure 23 offset=44.0>>
-        la bamba: <music21.spanner.RepeatBracket 2 <music21.stream.Measure 24 offset=46.0>>
+    TODO: 
+        1) What if a score has both a text repeat and a repeat sign?
+        2) What about scores with bracket endings?  How does Music21 handle them?
     """
     for next_score in score_dictionary:
+        score_dictionary[next_score]['Other'] = {}
         parsed = score_dictionary[next_score]['File Information']['Stream']
         
         # Gives the true length of piece if all repeats are performed
-        #repeats = len(repeat.Expander(parsed.parts[0]).measureMap())
+        text_repeats = parsed.parts[0].recurse().getElementsByClass(repeat.RepeatExpression)
+        bar_repeats = parsed.parts[0].recurse().getElementsByClass(bar.Repeat)
         
-        repeats = parsed.parts[0].recurse().getElementsByClass(repeat.RepeatMark)
-        for next_thing in repeats:
-            print(f"{next_score}: {next_thing} - {len(repeats)}")
+        if text_repeats:
+            for next_text in text_repeats:
+                #print(f"{next_score}: {next_text.name}")
         
-        # The number of printed measures in the score if no repeats were performed
-        s_length = score_dictionary[next_score]['Other']['Length']
+                if next_text.name != 'fine' or next_text.name != 'coda':
+                    score_dictionary[next_score]['Other'].update({'Repeats': next_text.name})
         
-        if repeats == s_length:
-            score_dictionary[next_score]['Other'].update({'Repeats': False})
+        elif bar_repeats:
+            for next_bar in bar_repeats:
+                #print(f"{next_score}: {next_bar}")
+                score_dictionary[next_score]['Other'].update({'Repeats': 'repeat sign'})
         
         else:
-            score_dictionary[next_score]['Other'].update({'Repeats': True})
+            score_dictionary[next_score]['Other'].update({'Repeats': None})
 
-    #pprint(score_dictionary)
     return score_dictionary
 
 #
