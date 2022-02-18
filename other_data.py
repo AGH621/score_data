@@ -32,11 +32,11 @@ from music21_globals  import define_corpus
 
 #                                            METHODS
 #-----------------------------------------------------------------------------------------------
-def number_of_parts(score_dictionary, my_metadata):
+def number_of_parts(a_dictionary, score):
     """
     Get how many parts a score has.
     """
-    for next_score in score_dictionary:
+    """for next_score in score_dictionary:
         score_dictionary[next_score]['Other'] = {}
         parsed = score_dictionary[next_score]['File Information']['Stream']
         
@@ -44,55 +44,71 @@ def number_of_parts(score_dictionary, my_metadata):
         
         score_dictionary[next_score]['Other'].update({'Parts': num_parts})
 
-    #pprint(score_dictionary)
-    return score_dictionary
+    return score_dictionary"""
+    
+    #a_dictionary[score]['Other'] = {}
+    parsed = a_dictionary[score]['File Information']['Stream']
+    
+    num_parts = len(parsed.parts)
+    
+    a_dictionary[score]['Other'].update({'Parts': num_parts})
+    
+    return a_dictionary
 
 #
 #-----------------------------------------------------------------------------------------------
-def measure_length(score_dictionary, my_metadata):
+def measure_length(a_dictionary, score):
     """
     Get how many measures a score has printed.  Repeats are NOT included in this tally.
     """
-    for next_score in score_dictionary:
+    """for next_score in score_dictionary:
         parsed = score_dictionary[next_score]['File Information']['Stream']
 
         m_length = len(parsed.parts[0].getElementsByClass(stream.Measure))
-        #print(f"{next_score}: {m_length}")
         
         score_dictionary[next_score]['Other'].update({'Length': m_length})
 
-    #pprint(score_dictionary)
-    return score_dictionary
+    return score_dictionary"""
+    
+    parsed = a_dictionary[score]['File Information']['Stream']
+    m_length = len(parsed.parts[0].getElementsByClass(stream.Measure))
+    a_dictionary[score]['Other'].update({'Length': m_length})
+    
+    return a_dictionary
+    
 #
 #-----------------------------------------------------------------------------------------------
 def repeats(score_dictionary, my_metadata):
     """
     Figure out whether a score has repeats.
     
-    Can use [score].recurse().spanners to locate ending repeats:
-        la bamba: <music21.spanner.RepeatBracket 1 <music21.stream.Measure 22 offset=42.0><music21.stream.Measure 23 offset=44.0>>
-        la bamba: <music21.spanner.RepeatBracket 2 <music21.stream.Measure 24 offset=46.0>>
+    TODO: 
+        1) What if a score has both a text repeat and a repeat sign?
+        2) What about scores with bracket endings?  How does Music21 handle them?
     """
     for next_score in score_dictionary:
+        score_dictionary[next_score]['Other'] = {}
         parsed = score_dictionary[next_score]['File Information']['Stream']
         
         # Gives the true length of piece if all repeats are performed
-        #repeats = len(repeat.Expander(parsed.parts[0]).measureMap())
+        text_repeats = parsed.parts[0].recurse().getElementsByClass(repeat.RepeatExpression)
+        bar_repeats = parsed.parts[0].recurse().getElementsByClass(bar.Repeat)
         
-        repeats = parsed.parts[0].recurse().getElementsByClass(repeat.RepeatMark)
-        for next_thing in repeats:
-            print(f"{next_score}: {next_thing} - {len(repeats)}")
+        if text_repeats:
+            for next_text in text_repeats:
+                #print(f"{next_score}: {next_text.name}")
         
-        # The number of printed measures in the score if no repeats were performed
-        s_length = score_dictionary[next_score]['Other']['Length']
+                if next_text.name != 'fine' or next_text.name != 'coda':
+                    score_dictionary[next_score]['Other'].update({'Repeats': next_text.name})
         
-        if repeats == s_length:
-            score_dictionary[next_score]['Other'].update({'Repeats': False})
+        elif bar_repeats:
+            for next_bar in bar_repeats:
+                #print(f"{next_score}: {next_bar}")
+                score_dictionary[next_score]['Other'].update({'Repeats': 'repeat sign'})
         
         else:
-            score_dictionary[next_score]['Other'].update({'Repeats': True})
+            score_dictionary[next_score]['Other'].update({'Repeats': None})
 
-    #pprint(score_dictionary)
     return score_dictionary
 
 #
@@ -224,14 +240,14 @@ if __name__ == '__main__':
     score_dictionary = unpickle_it(pickle_path=SCORE_DATAPATH, be_verbose=False)
     my_metadata = access_metadata()
     
-    number_of_parts(score_dictionary, my_metadata)
-    measure_length(score_dictionary, my_metadata)
+    #number_of_parts(score_dictionary, my_metadata)
+    #measure_length(score_dictionary, my_metadata)
     repeats(score_dictionary, my_metadata)
-    lyrics(score_dictionary, my_metadata)
-    chords_symbols(score_dictionary, my_metadata)
-    slurs(score_dictionary, my_metadata)
+    #lyrics(score_dictionary, my_metadata)
+    #chords_symbols(score_dictionary, my_metadata)
+    #slurs(score_dictionary, my_metadata)
     
-    #pprint(score_dictionary)
+    pprint(score_dictionary)
     #pickle_it(score_dictionary, pickle_path=SCORE_DATAPATH, text_path=SCORE_LOGPATH)
     
     

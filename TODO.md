@@ -28,16 +28,18 @@
 * Write debugging/error handling code for each problem
 * Do above for any errors thought of but not found
 
-### Family Score Streams ###
+### Data Validation/File Info###
 
 * New git branch
-* Have an upload or filepath for each score in the family
+* Figure out how to add file information for a single score to an existing score dictionary.
+* Figure out how to add/modify individual entries to an existing score dictionary when a cache is rebuilt
 
 ### Pitch Data ###
 
 * Handle the error of a score part being a blank staff. Generate another musicxml from "Astonishing" musx for the test case.
 
 ### Other Data ###
+
 * Rebuild the repeats module using parsed.parts[0].recurse().getElementsByClass(repeat.RepeatMark) to get the repeats.
 
 

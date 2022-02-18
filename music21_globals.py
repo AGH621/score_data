@@ -19,6 +19,7 @@ from pprint     import PrettyPrinter
 from pathlib    import Path
 from deepdiff   import DeepDiff 
 
+import os
 import time
 import pickle
 import inspect
@@ -123,10 +124,7 @@ def score_file_info():
             sc_family.append({file_name: score_path})
             #if 'Family' in score_dictionary[file_name]['File Information'].keys():
                 #print('ok')
-    
-    
-        
-    
+
     # Step 4: Add the variant scores.
     for x in range(len(sc_family)):
         for key in sc_family[x]:
@@ -297,7 +295,18 @@ def update_metadata_cache():
         
         # Now rebuild
         build_metadata_cache()
-        score_file_info()     
+        score_file_info()
+        
+#
+#----------------------------------------------------------------------------------------------- 
+def find_file(file_name, directory_name):
+    files_found = []
+    for path, subdirs, files in os.walk(directory_name):
+        for name in files:
+            if(file_name == name):
+                file_path = os.path.join(path,name)
+                files_found.append(file_path)
+    return files_found     
 
 #                                           MAIN
 #-----------------------------------------------------------------------------------------------
@@ -310,5 +319,6 @@ if __name__ == '__main__':
     #score_dictionary = score_file_info()
     update_metadata_cache()
 
-    #pprint(score_dictionary)
+    score_dictionary = unpickle_it(pickle_path=SCORE_DATAPATH, be_verbose=False)
+    pprint(score_dictionary)
     

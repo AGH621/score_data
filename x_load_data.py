@@ -9,9 +9,12 @@ Driving code which builds the Score Dictionary, and loads it into the database.
 """
 #                                           IMPORTS
 #-----------------------------------------------------------------------------------------------
+
 from music21_globals    import *
 
-from rhythm_data        import time_signature
+from other_data         import *
+
+"""from rhythm_data        import time_signature
 from rhythm_data        import meter
 from rhythm_data        import value_list
 from rhythm_data        import anacrusis
@@ -29,7 +32,7 @@ from other_data         import measure_length
 from other_data         import repeats
 from other_data         import lyrics
 from other_data         import chords_symbols
-from other_data         import slurs
+from other_data         import slurs"""
                                 
 
 
@@ -83,7 +86,52 @@ def score_dictionary():
 
 #
 #-----------------------------------------------------------------------------------------------
+def xxxbuild_single():
+    """
+    Build a single entry in the Score Dictionary.
+    """
+    my_metadata = access_metadata()
+    
+    score_list = []
+    
+    for x in range(len(my_metadata)):
+        score_path = my_metadata[x].metadata.sourcePath
+        file_name = score_path.split('/')[-1].split('.')[0]
+        score_list.append(file_name)
+        
 
+    # Is there a Score Dictionary already?
+    score_dict_path = find_file('score_dictionary.pkl', 'score_data')
+    
+    # Yes? Unpickle it.
+    if score_dict_path:
+        pprint(score_dict_path)
+        score_dictionary = unpickle_it(pickle_path=SCORE_DATAPATH, be_verbose=False)
+    
+    # No? Then all the scores need to go into the iteration list.
+    else:
+        print('not here dave')
+        iteration_list = score_list
+        pprint(iteration_list)
+
+#
+#-----------------------------------------------------------------------------------------------
+def build_an_entry(dictionary):
+    """
+    Take the score dictionary with only file information entries, iterate through it to create a full entry.
+    """
+    
+    for next_entry in dictionary:
+        #pprint(dictionary[next_entry])
+        
+        dictionary[next_entry]['Other'] = {}
+        number_of_parts(dictionary, next_entry)
+        measure_length(dictionary, next_entry)
+    
+    pprint(dictionary)
+
+#
+#-----------------------------------------------------------------------------------------------
 
 
 
@@ -91,6 +139,8 @@ def score_dictionary():
 #-----------------------------------------------------------------------------------------------
 if __name__ == '__main__':
     
-    score_dictionary()
+    #score_dictionary()
     
+    dictionary = unpickle_it(pickle_path=SCORE_DATAPATH, be_verbose=False)
+    build_an_entry(dictionary)
     
