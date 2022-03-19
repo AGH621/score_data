@@ -23,12 +23,7 @@ Populate the other dictionary for each score in this format:
 from music21        import *
 from pprint         import pprint
 
-from music21_globals  import SCORE_DATAPATH
-from music21_globals  import SCORE_LOGPATH
-from music21_globals  import unpickle_it
-from music21_globals  import pickle_it
-from music21_globals  import access_metadata
-from music21_globals  import define_corpus
+from music21_globals  import *
 
 #                                            METHODS
 #-----------------------------------------------------------------------------------------------
@@ -201,18 +196,21 @@ def slurs(a_dictionary, score):
 #-----------------------------------------------------------------------------------------------
 if __name__ == '__main__':
 
-    # Retreive the Score Dictionary and metadata.
-    score_dictionary = unpickle_it(pickle_path=SCORE_DATAPATH, be_verbose=False)
+    dictionary = score_file_info()
     my_metadata = access_metadata()
     
-    #number_of_parts(score_dictionary, my_metadata)
-    #measure_length(score_dictionary, my_metadata)
-    repeats(score_dictionary, my_metadata)
-    #lyrics(score_dictionary, my_metadata)
-    #chords_symbols(score_dictionary, my_metadata)
-    #slurs(score_dictionary, my_metadata)
+    for next_entry in dictionary:
+        
+        # Other musical elements
+        dictionary[next_entry]['Other'] = {}
     
-    pprint(score_dictionary)
-    #pickle_it(score_dictionary, pickle_path=SCORE_DATAPATH, text_path=SCORE_LOGPATH)
+        number_of_parts(dictionary, next_entry)
+        measure_length(dictionary, next_entry)
+        repeats(dictionary, next_entry)
+        lyrics(dictionary, next_entry)
+        chords_symbols(dictionary, next_entry)
+        slurs(dictionary, next_entry)
+    
+    pprint(dictionary)
     
     

@@ -24,7 +24,7 @@ import codecs
 
 SCORE_DATAPATH           = Path.home().joinpath('Dropbox (Personal)', 'Score Library', 'score_search', 'score_data', '_Data', 'score_dictionary.pkl')
 SCORE_LOGPATH            = Path.home().joinpath('Dropbox (Personal)', 'Score Library', 'score_search', 'score_data', '_Logs', 'score_dictionary.txt')
-CORPUS_FILEPATH          = Path.home().joinpath('Dropbox (Personal)', 'Score Library', 'xml')
+CORPUS_FILEPATH          = Path.home().joinpath('Dropbox (Personal)', 'Score Library', 'xml_dev')
 CACHE_FILEPATH           = Path.home().joinpath('Dropbox (Personal)', 'Score Library', 'score_search', 'score_data', '_cache')
 
 #                                            METHODS
@@ -52,7 +52,7 @@ def define_corpus():
     our_corpus.save()
     print(corpus.manager.listLocalCorporaNames())
     
-    return test_corpus
+    return our_corpus
 #
 #-----------------------------------------------------------------------------------------------
 def build_metadata_cache():
@@ -309,7 +309,7 @@ if __name__ == '__main__':
     #define_corpus()
     #build_metadata_cache()
 
-    #score_dictionary = score_file_info()
+    score_dictionary = score_file_info()
     #update_metadata_cache()
 
     score_dictionary = unpickle_it(pickle_path=SCORE_DATAPATH, be_verbose=False)
