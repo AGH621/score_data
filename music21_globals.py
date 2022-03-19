@@ -3,13 +3,7 @@
 Song Search
 written by: Anne Hamill
 created on: 23 October 2020
-
-TODO: Need to consolidate the score records.  Instead of each score having its own record, there should be a record for each family of scores.
-      For example: "A Cup of Tea" has a lead sheet, piano score, recorder score, dotation version, student version.  The musical characteristics
-      variations is the same.  Build a record for the leadsheet and then add the file path and type for each variation to the record.
-
-      >> Will need to refactor several methods when implementing this change.
-
+clean: 0
 """
 #                                           IMPORTS
 #-----------------------------------------------------------------------------------------------
@@ -51,11 +45,11 @@ def define_corpus():
     
     TODO: Turn ofF the automatic metadata caching.
     """
-    test_corpus = corpus.corpora.LocalCorpus('scoreLibrary')
+    our_corpus = corpus.corpora.LocalCorpus('scoreLibrary')
     
-    test_corpus.addPath(CORPUS_FILEPATH)
+    our_corpus.addPath(CORPUS_FILEPATH)
 
-    test_corpus.save()
+    our_corpus.save()
     print(corpus.manager.listLocalCorporaNames())
     
     return test_corpus
@@ -75,7 +69,7 @@ def build_metadata_cache():
     #if cache_file in CACHE_FILEPATH.iterdir():
         #pass
 
-    corpus.corpora.LocalCorpus('scoreLibrary').cacheFilePath = Path.joinpath(CACHE_FILEPATH, 'cache_test.json')
+    corpus.corpora.LocalCorpus('scoreLibrary').cacheFilePath = Path.joinpath(CACHE_FILEPATH, 'our_corpus_cache.json')
     corpus.corpora.LocalCorpus('scoreLibrary').rebuildMetadataCache()
 #
 #-----------------------------------------------------------------------------------------------
@@ -211,9 +205,8 @@ def update_metadata_cache():
         1) Have files been added or deleted?  Compare directory info with entry in Score Dictionary -> File Information -> Path
         2) Have files been modified?  Compare file info with entry in Score Dictionary -> File Information -> Modified On
     
-    Tests:
-        1) What if the Score Dictionary does not exist?
-        2) What if the Local Corpus directory has moved? Is empty?
+    TODO: Need a more precise rebuild process. Instead of rebuilding the whole Score Dictionary, only add/delete/modify the entire Score Dictionary, 
+          only change the entries that have been identified as different.
     """
     # Check 1: Have files been added or deleted? 
     # Step 1: Get the file paths from the xml directory and put them in a list.
@@ -239,11 +232,11 @@ def update_metadata_cache():
         #if next_path not in score_list:
             #print(f"File Path: {next_path}")
     
-    # Step 4: Compare the lists.  If they are the same, proceed to Check 2.   
+    # Step 4: Compare the lists.  If they are the same then the corpus has not changed, proceed to Check 2.   
     if score_list == files:
         print(">>>>> The score dictionary and the local corpus directory contain the same files. Proceeding to Step 2 of update analysis. <<<<<\n")
         
-        # Check 2: Have the modification datetime's changed for any file?
+        # Check 2: Have any of the files been modified?
         # Step 1: Retreive the mtime from the xml directory, translate to the form in the Score Dictionary, put in a dictionary.
         file_mod_time = {}
         for next_file in files:
@@ -274,8 +267,8 @@ def update_metadata_cache():
             print(">>>>> Files in the local corpus directory have been modified.  Rebuilding the music21 metadata cache and score dictionary. <<<<<")
             
             # Before rebuilding, change the name of the current cache file in case we need to walk it back.
-            current_cache = Path.joinpath(CACHE_FILEPATH, 'cache_test.json')
-            current_cache.rename(Path.joinpath(CACHE_FILEPATH, 'old_cache_test.json'))
+            current_cache = Path.joinpath(CACHE_FILEPATH, 'our_corpus_cache.json')
+            current_cache.rename(Path.joinpath(CACHE_FILEPATH, 'old_cache.json'))
             
             # Now rebuild
             build_metadata_cache()
@@ -285,13 +278,13 @@ def update_metadata_cache():
         else:
             print(">>>>> The local corpus directory and score dictionary match.  No action required.  Analysis finished. <<<<<")
             
-    # Check 1 revealed changes.  Rebuild the metadata and Score Library
+    # The corpus has changed.  Rebuild the metadata and Score Dictionary.
     else:
         print(">>>>> The score dictionary and local corpus directory are different. Rebuilding the Music21 metadata cache and score dictionary. <<<<<\n")
         
         #Before rebuilding, change the name of the current cache file in case we need to walk it back.
-        current_cache = Path.joinpath(CACHE_FILEPATH, 'cache_test.json')
-        current_cache.rename(Path.joinpath(CACHE_FILEPATH, 'old_cache_test.json'))
+        current_cache = Path.joinpath(CACHE_FILEPATH, 'our_corpus_cache.json')
+        current_cache.rename(Path.joinpath(CACHE_FILEPATH, 'old_cache.json'))
         
         # Now rebuild
         build_metadata_cache()
@@ -317,7 +310,7 @@ if __name__ == '__main__':
     #build_metadata_cache()
 
     #score_dictionary = score_file_info()
-    update_metadata_cache()
+    #update_metadata_cache()
 
     score_dictionary = unpickle_it(pickle_path=SCORE_DATAPATH, be_verbose=False)
     pprint(score_dictionary)

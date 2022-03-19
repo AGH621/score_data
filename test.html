@@ -1,0 +1,1108 @@
+Setting or variable 'fontName' not found
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>x_load_data.py</title>
+	<style type="text/css">
+/* Stylesheet generated from TextMate theme
+ *
+ * Solarized (Light)
+ * 
+ *
+ */
+
+/* Mostly to improve view within the TextMate HTML viewer */
+body {
+	margin: 0;
+	padding: 0;
+}
+
+pre.textmate-source {
+	margin: 0;
+	padding: 0 0 0 2px;
+	font-family: , monospace;
+	font-size: 12px;
+	line-height: 1.3em;
+	word-wrap: break-word;
+	white-space: pre;
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap;
+	white-space: -o-pre-wrap;
+}
+
+pre.textmate-source.solarized_light_ {
+	color: #586E75;
+	background-color: #FDF6E3;
+}
+
+pre.textmate-source .linenum {
+	width: 75px;
+	padding: 0.1em 1em 0.2em 0;
+	color: #888;
+	background-color: #eee;
+}
+pre.textmate-source.solarized_light_ span {
+   padding-top: 0.2em;
+   padding-bottom: 0.1em;
+}
+pre.textmate-source.solarized_light_ ::selection {
+	background-color: #EEE8D5;
+}
+/* Comment */
+pre.textmate-source.solarized_light_ .comment {
+	color: #93A1A1;
+}
+
+/* String */
+pre.textmate-source.solarized_light_ .string {
+	color: #2aa198;
+}
+
+/* StringNumber */
+pre.textmate-source.solarized_light_ .string {
+	color: #586E75;
+}
+
+/* Regexp */
+pre.textmate-source.solarized_light_ .string_regexp {
+	color: #dc322f;
+}
+
+/* Number */
+pre.textmate-source.solarized_light_ .constant_numeric {
+	color: #d33682;
+}
+
+/* Variable */
+pre.textmate-source.solarized_light_ .variable_language, pre.textmate-source.solarized_light_ .variable_other {
+	color: #268bd2;
+}
+
+/* Keyword */
+pre.textmate-source.solarized_light_ .keyword {
+	color: #859900;
+}
+
+/* Storage */
+pre.textmate-source.solarized_light_ .storage {
+	color: #073642;
+	font-weight: bold;
+}
+
+/* Class name */
+pre.textmate-source.solarized_light_ .entity_name_class, pre.textmate-source.solarized_light_ .entity_name_type_class {
+	color: #268bd2;
+}
+
+/* Function name */
+pre.textmate-source.solarized_light_ .entity_name_function {
+	color: #268bd2;
+}
+
+/* Variable start */
+pre.textmate-source.solarized_light_ .punctuation_definition_variable {
+	color: #859900;
+}
+
+/* Embedded code markers */
+pre.textmate-source.solarized_light_ .punctuation_section_embedded_begin, pre.textmate-source.solarized_light_ .punctuation_section_embedded_end {
+	color: #dc322f;
+}
+
+/* Built-in constant */
+pre.textmate-source.solarized_light_ .constant_language, pre.textmate-source.solarized_light_ .meta_preprocessor {
+	color: #B58900;
+}
+
+/* Support.construct */
+pre.textmate-source.solarized_light_ .support_function_construct, pre.textmate-source.solarized_light_ .keyword_other_new {
+	color: #dc322f;
+}
+
+/* User-defined constant */
+pre.textmate-source.solarized_light_ .constant_character, pre.textmate-source.solarized_light_ .constant_other {
+	color: #CB4B16;
+}
+
+/* Inherited class */
+pre.textmate-source.solarized_light_ .entity_other_inherited-class {
+}
+
+/* Function argument */
+pre.textmate-source.solarized_light_ .variable_parameter {
+}
+
+/* Tag name */
+pre.textmate-source.solarized_light_ .entity_name_tag {
+	color: #268bd2;
+	font-weight: bold;
+}
+
+/* Tag start/end */
+pre.textmate-source.solarized_light_ .punctuation_definition_tag_html, pre.textmate-source.solarized_light_ .punctuation_definition_tag_begin, pre.textmate-source.solarized_light_ .punctuation_definition_tag_end {
+	color: #93A1A1;
+}
+
+/* Tag attribute */
+pre.textmate-source.solarized_light_ .entity_other_attribute-name {
+	color: #93A1A1;
+}
+
+/* Library function */
+pre.textmate-source.solarized_light_ .support_function {
+	color: #268bd2;
+}
+
+/* Continuation */
+pre.textmate-source.solarized_light_ .punctuation_separator_continuation {
+	color: #dc322f;
+}
+
+/* Library constant */
+pre.textmate-source.solarized_light_ .support_constant {
+}
+
+/* Library class/type */
+pre.textmate-source.solarized_light_ .support_type, pre.textmate-source.solarized_light_ .support_class {
+	color: #859900;
+}
+
+/* Library Exception */
+pre.textmate-source.solarized_light_ .support_type_exception {
+	color: #CB4B16;
+}
+
+/* Special */
+pre.textmate-source.solarized_light_ .keyword_other_special-method {
+	color: #CB4B16;
+}
+
+/* Library variable */
+pre.textmate-source.solarized_light_ .support_other_variable {
+}
+
+/* Invalid */
+pre.textmate-source.solarized_light_ .invalid {
+}
+
+/* Quoted String */
+pre.textmate-source.solarized_light_ .string_quoted_double, pre.textmate-source.solarized_light_ .string_quoted_single {
+	color: #2aa198;
+}
+
+/* Quotes */
+pre.textmate-source.solarized_light_ .punctuation_definition_string_begin, pre.textmate-source.solarized_light_ .punctuation_definition_string_end {
+	color: #dc322f;
+}
+
+/* CSS: Property */
+pre.textmate-source.solarized_light_ .entity_name_tag_css, pre.textmate-source.solarized_light_ .support_type_property-name_css, pre.textmate-source.solarized_light_ .meta_property-name_css {
+	color: #b58900;
+}
+
+/* CSS: @font-face */
+pre.textmate-source.solarized_light_ .source_css {
+	color: #dc322f;
+}
+
+/* CSS: Selector */
+pre.textmate-source.solarized_light_ .meta_selector_css {
+	color: #586e75;
+}
+
+/* CSS: {} */
+pre.textmate-source.solarized_light_ .punctuation_section_property-list_css {
+	color: #6c71c4;
+}
+
+/* CSS: Numeric Value */
+pre.textmate-source.solarized_light_ .meta_property-value_css .constant_numeric_css, pre.textmate-source.solarized_light_ .keyword_other_unit_css,constant_other_color_rgb-value_css {
+	color: #2aa198;
+}
+
+/* CSS: Value */
+pre.textmate-source.solarized_light_ .meta_property-value_css {
+	color: #2aa198;
+}
+
+/* CSS: !Important */
+pre.textmate-source.solarized_light_ .keyword_other_important_css {
+	color: #dc322f;
+}
+
+/* CSS: Standard Value */
+pre.textmate-source.solarized_light_ .support_constant_color {
+	color: #2aa198;
+}
+
+/* CSS: Tag */
+pre.textmate-source.solarized_light_ .entity_name_tag_css {
+	color: #859900;
+}
+
+/* CSS: : , */
+pre.textmate-source.solarized_light_ .punctuation_separator_key-value_css, pre.textmate-source.solarized_light_ .punctuation_terminator_rule_css {
+	color: #586e75;
+}
+
+/* CSS .class */
+pre.textmate-source.solarized_light_ .entity_other_attribute-name_class_css {
+	color: #268bd2;
+}
+
+/* CSS :pseudo */
+pre.textmate-source.solarized_light_ .entity_other_attribute-name_pseudo-element_css, pre.textmate-source.solarized_light_ .entity_other_attribute-name_pseudo-class_css {
+	color: #cb4b16;
+}
+
+/* CSS: #id */
+pre.textmate-source.solarized_light_ .entity_other_attribute-name_id_css {
+	color: #268bd2;
+}
+
+/* JS: Function Name */
+pre.textmate-source.solarized_light_ .meta_function_js, pre.textmate-source.solarized_light_ .entity_name_function_js, pre.textmate-source.solarized_light_ .support_function_dom_js {
+	color: #b58900;
+}
+
+/* JS: Source */
+pre.textmate-source.solarized_light_ .text_html_basic .source_js_embedded_html {
+	color: #b58900;
+}
+
+/* JS: Function */
+pre.textmate-source.solarized_light_ .storage_type_function_js {
+	color: #268bd2;
+}
+
+/* JS: Numeric Constant */
+pre.textmate-source.solarized_light_ .constant_numeric_js {
+	color: #2aa198;
+}
+
+/* JS: [] */
+pre.textmate-source.solarized_light_ .meta_brace_square_js {
+	color: #268bd2;
+}
+
+/* JS: Storage Type */
+pre.textmate-source.solarized_light_ .storage_type_js {
+	color: #268bd2;
+}
+
+/* () */
+pre.textmate-source.solarized_light_ .meta_brace_round, pre.textmate-source.solarized_light_ .punctuation_definition_parameters_begin_js, pre.textmate-source.solarized_light_ .punctuation_definition_parameters_end_js {
+	color: #93A1A1;
+}
+
+/* {} */
+pre.textmate-source.solarized_light_ .meta_brace_curly_js {
+	color: #268bd2;
+}
+
+/* HTML: Doctype */
+pre.textmate-source.solarized_light_ .meta_tag_metadata_doctype .entity_name_tag, pre.textmate-source.solarized_light_ .meta_tag_metadata_doctype, pre.textmate-source.solarized_light_ .meta_tag_metadata_doctype .string_quoted {
+	color: #93a1a1;
+	font-style: italic;
+}
+
+/* HTML: Comment Block */
+pre.textmate-source.solarized_light_ .comment_block_html {
+	color: #839496;
+	font-style: italic;
+}
+
+/* HTML: Script */
+pre.textmate-source.solarized_light_ .meta_tag_metadata_script .entity_name_tag {
+	font-style: italic;
+}
+
+/* HTML: Style */
+pre.textmate-source.solarized_light_ .source_css_embedded_html .string_quoted_double_html {
+	color: #2aa198;
+}
+
+/* HTML: Text */
+pre.textmate-source.solarized_light_ .text_html_ruby {
+	color: #cb4b16;
+	font-weight: bold;
+}
+
+/* HTML: = */
+pre.textmate-source.solarized_light_ .text_html .meta_tag {
+	color: #657b83;
+}
+
+/* HTML: something= */
+pre.textmate-source.solarized_light_ .text_html_basic .entity_other_attribute-name_html {
+	color: #657b83;
+}
+
+/* HTML: " */
+pre.textmate-source.solarized_light_ .text_html .meta_tag .string .punctuation_definition_string_*_html {
+	color: #2aa198;
+}
+
+/* HTML: <tag> */
+pre.textmate-source.solarized_light_ .text_html .meta_tag .entity_name_tag {
+	color: #268bd2;
+	font-weight: bold;
+}
+
+/* HTML: style */
+pre.textmate-source.solarized_light_ .source_css_embedded_html .entity_name_tag_style_html {
+	font-style: italic;
+}
+
+/* HTML: <style> */
+pre.textmate-source.solarized_light_ .entity_name_tag_style_html {
+}
+
+/* HTML: {} */
+pre.textmate-source.solarized_light_ .text_html_basic .punctuation_section_property-list_css {
+}
+
+/* HTML: Embeddable */
+pre.textmate-source.solarized_light_ .source_css_embedded_html, pre.textmate-source.solarized_light_ .comment_block_html {
+	color: #839496;
+	font-style: italic;
+}
+
+/* Ruby: Variable definition */
+pre.textmate-source.solarized_light_ .punctuation_definition_variable_ruby {
+	color: #268bd2;
+}
+
+/* Ruby: Function Name */
+pre.textmate-source.solarized_light_ .meta_function_method_with-arguments_ruby {
+	color: #657b83;
+}
+
+/* Ruby: Variable */
+pre.textmate-source.solarized_light_ .variable_language_ruby {
+	color: #2aa198;
+}
+
+/* Ruby: Function */
+pre.textmate-source.solarized_light_ .entity_name_function_ruby {
+	color: #268bd2;
+}
+
+/* Ruby: Keyword Control */
+pre.textmate-source.solarized_light_ .keyword_control_ruby, pre.textmate-source.solarized_light_ .keyword_control_def_ruby {
+	color: #859900;
+	font-weight: bold;
+}
+
+/* Ruby: Class */
+pre.textmate-source.solarized_light_ .keyword_control_class_ruby, pre.textmate-source.solarized_light_ .meta_class_ruby {
+	color: #859900;
+}
+
+/* Ruby: Class Name */
+pre.textmate-source.solarized_light_ .entity_name_type_class_ruby {
+	color: #b58900;
+}
+
+/* Ruby: Keyword */
+pre.textmate-source.solarized_light_ .keyword_control_ruby {
+	color: #859900;
+}
+
+/* Ruby: Support Class */
+pre.textmate-source.solarized_light_ .support_class_ruby {
+	color: #b58900;
+}
+
+/* Ruby: Special Method */
+pre.textmate-source.solarized_light_ .keyword_other_special-method_ruby {
+	color: #859900;
+}
+
+/* Ruby: Constant */
+pre.textmate-source.solarized_light_ .constant_language_ruby, pre.textmate-source.solarized_light_ .constant_numeric_ruby {
+	color: #2aa198;
+}
+
+/* Ruby: Constant Other */
+pre.textmate-source.solarized_light_ .variable_other_constant_ruby {
+	color: #b58900;
+}
+
+/* Ruby: :symbol */
+pre.textmate-source.solarized_light_ .constant_other_symbol_ruby {
+	color: #2aa198;
+}
+
+/* Ruby: Punctuation Section '' */
+pre.textmate-source.solarized_light_ .punctuation_section_embedded_ruby, pre.textmate-source.solarized_light_ .punctuation_definition_string_begin_ruby, pre.textmate-source.solarized_light_ .punctuation_definition_string_end_ruby {
+	color: #dc322f;
+}
+
+/* Ruby: Special Method */
+pre.textmate-source.solarized_light_ .keyword_other_special-method_ruby {
+	color: #cb4b16;
+}
+
+/* PHP: Include */
+pre.textmate-source.solarized_light_ .keyword_control_import_include_php {
+	color: #cb4b16;
+}
+
+/* Ruby: erb = */
+pre.textmate-source.solarized_light_ .text_html_ruby .meta_tag_inline_any_html {
+	color: #839496;
+}
+
+/* Ruby: erb "" */
+pre.textmate-source.solarized_light_ .text_html_ruby .punctuation_definition_string_begin, pre.textmate-source.solarized_light_ .text_html_ruby .punctuation_definition_string_end {
+	color: #2aa198;
+}
+
+/* PHP: Quoted Single */
+pre.textmate-source.solarized_light_ .punctuation_definition_string_begin, pre.textmate-source.solarized_light_ .punctuation_definition_string_end {
+	color: #839496;
+}
+
+/* PHP: [] */
+pre.textmate-source.solarized_light_ .keyword_operator_index-start_php, pre.textmate-source.solarized_light_ .keyword_operator_index-end_php {
+	color: #dc322f;
+}
+
+/* PHP: Array */
+pre.textmate-source.solarized_light_ .meta_array_php {
+	color: #586e75;
+}
+
+/* PHP: Array() */
+pre.textmate-source.solarized_light_ .meta_array_php .support_function_construct_php, pre.textmate-source.solarized_light_ .meta_array_empty_php .support_function_construct_php {
+	color: #b58900;
+}
+
+/* PHP: Array Construct */
+pre.textmate-source.solarized_light_ .support_function_construct_php {
+	color: #b58900;
+}
+
+/* PHP: Array Begin */
+pre.textmate-source.solarized_light_ .punctuation_definition_array_begin, pre.textmate-source.solarized_light_ .punctuation_definition_array_end {
+	color: #dc322f;
+}
+
+/* PHP: Numeric Constant */
+pre.textmate-source.solarized_light_ .constant_numeric_php {
+	color: #2aa198;
+}
+
+/* PHP: New */
+pre.textmate-source.solarized_light_ .keyword_other_new_php {
+	color: #CB4B16;
+}
+
+/* PHP: :: */
+pre.textmate-source.solarized_light_ .support_class_php, pre.textmate-source.solarized_light_ .keyword_operator_class {
+	color: #586e75;
+}
+
+/* PHP: Other Property */
+pre.textmate-source.solarized_light_ .variable_other_property_php {
+	color: #93a1a1;
+}
+
+/* PHP: Class */
+pre.textmate-source.solarized_light_ .storage_modifier_extends_php, pre.textmate-source.solarized_light_ .storage_type_class_php, pre.textmate-source.solarized_light_ .keyword_operator_class_php {
+	color: #b58900;
+}
+
+/* PHP: Inherited Class */
+pre.textmate-source.solarized_light_ .meta_other_inherited-class_php {
+	color: #586e75;
+}
+
+/* PHP: Storage Type */
+pre.textmate-source.solarized_light_ .storage_type_php {
+	color: #859900;
+}
+
+/* PHP: Function */
+pre.textmate-source.solarized_light_ .entity_name_function_php {
+	color: #93a1a1;
+}
+
+/* PHP: Function Construct */
+pre.textmate-source.solarized_light_ .support_function_construct_php {
+	color: #859900;
+}
+
+/* PHP: Function Call */
+pre.textmate-source.solarized_light_ .entity_name_type_class_php, pre.textmate-source.solarized_light_ .meta_function-call_php, pre.textmate-source.solarized_light_ .meta_function-call_static_php, pre.textmate-source.solarized_light_ .meta_function-call_object_php {
+	color: #839496;
+}
+
+/* PHP: Comment */
+pre.textmate-source.solarized_light_ .keyword_other_phpdoc {
+	color: #93a1a1;
+}
+
+/* PHP: Source Emebedded */
+pre.textmate-source.solarized_light_ .source_php_embedded_block_html {
+	color: #cb4b16;
+}
+
+/* PHP: Storage Type Function */
+pre.textmate-source.solarized_light_ .storage_type_function_php {
+	color: #cb4b16;
+}
+
+/* C: constant */
+pre.textmate-source.solarized_light_ .constant_numeric_c {
+	color: #2aa198;
+}
+
+/* C: Meta Preprocessor */
+pre.textmate-source.solarized_light_ .meta_preprocessor_c_include, pre.textmate-source.solarized_light_ .meta_preprocessor_macro_c {
+	color: #cb4b16;
+}
+
+/* C: Keyword */
+pre.textmate-source.solarized_light_ .keyword_control_import_define_c, pre.textmate-source.solarized_light_ .keyword_control_import_include_c {
+	color: #cb4b16;
+}
+
+/* C: Function Preprocessor */
+pre.textmate-source.solarized_light_ .entity_name_function_preprocessor_c {
+	color: #cb4b16;
+}
+
+/* C: include <something.c> */
+pre.textmate-source.solarized_light_ .meta_preprocessor_c_include .string_quoted_other_lt-gt_include_c, pre.textmate-source.solarized_light_ .meta_preprocessor_c_include .punctuation_definition_string_begin_c, pre.textmate-source.solarized_light_ .meta_preprocessor_c_include .punctuation_definition_string_end_c {
+	color: #2aa198;
+}
+
+/* C: Function */
+pre.textmate-source.solarized_light_ .support_function_C99_c, pre.textmate-source.solarized_light_ .support_function_any-method_c, pre.textmate-source.solarized_light_ .entity_name_function_c {
+	color: #586e75;
+}
+
+/* C: " */
+pre.textmate-source.solarized_light_ .punctuation_definition_string_begin_c, pre.textmate-source.solarized_light_ .punctuation_definition_string_end_c {
+	color: #2aa198;
+}
+
+/* C: Storage Type */
+pre.textmate-source.solarized_light_ .storage_type_c {
+	color: #b58900;
+}
+
+/* diff: header */
+pre.textmate-source.solarized_light_ .meta_diff, pre.textmate-source.solarized_light_ .meta_diff_header {
+	color: #E0EDDD;
+	font-style: italic;
+	background-color: #b58900;
+}
+
+/* diff: deleted */
+pre.textmate-source.solarized_light_ .markup_deleted {
+	color: #dc322f;
+	background-color: #eee8d5;
+}
+
+/* diff: changed */
+pre.textmate-source.solarized_light_ .markup_changed {
+	color: #cb4b16;
+	background-color: #eee8d5;
+}
+
+/* diff: inserted */
+pre.textmate-source.solarized_light_ .markup_inserted {
+	color: #219186;
+	background-color: #eee8d5;
+}
+
+/* Markdown: Linebreak */
+pre.textmate-source.solarized_light_ .text_html_markdown .meta_dummy_line-break {
+	color: #E0EDDD;
+	background-color: #A57706;
+}
+
+/* Markdown: Raw */
+pre.textmate-source.solarized_light_ .text_html_markdown .markup_raw_inline {
+	color: #2aa198;
+}
+
+/* reST raw */
+pre.textmate-source.solarized_light_ .text_restructuredtext .markup_raw {
+	color: #2aa198;
+}
+
+/* Other: Removal */
+pre.textmate-source.solarized_light_ .other_package_exclude, pre.textmate-source.solarized_light_ .other_remove {
+	color: #dc322f;
+}
+
+/* Other: Add */
+pre.textmate-source.solarized_light_ .other_add {
+	color: #2aa198;
+}
+
+/* Tex: {} */
+pre.textmate-source.solarized_light_ .punctuation_section_group_tex ., pre.textmate-source.solarized_light_ .punctuation_definition_arguments_begin_latex, pre.textmate-source.solarized_light_ .punctuation_definition_arguments_end_latex, pre.textmate-source.solarized_light_ .punctuation_definition_arguments_latex {
+	color: #dc322f;
+}
+
+/* Tex: {text} */
+pre.textmate-source.solarized_light_ .meta_group_braces_tex {
+	color: #b58900;
+}
+
+/* Tex: Other Math */
+pre.textmate-source.solarized_light_ .string_other_math_tex {
+	color: #b58900;
+}
+
+/* Tex: {var} */
+pre.textmate-source.solarized_light_ .variable_parameter_function_latex {
+	color: #cb4b16;
+}
+
+/* Tex: Math \\ */
+pre.textmate-source.solarized_light_ .punctuation_definition_constant_math_tex {
+	color: #dc322f;
+}
+
+/* Tex: Constant Math */
+pre.textmate-source.solarized_light_ .text_tex_latex .constant_other_math_tex, pre.textmate-source.solarized_light_ .constant_other_general_math_tex, pre.textmate-source.solarized_light_ .constant_other_general_math_tex, pre.textmate-source.solarized_light_ .constant_character_math_tex {
+	color: #2aa198;
+}
+
+/* Tex: Other Math String */
+pre.textmate-source.solarized_light_ .string_other_math_tex {
+	color: #b58900;
+}
+
+/* Tex: $ */
+pre.textmate-source.solarized_light_ .punctuation_definition_string_begin_tex, pre.textmate-source.solarized_light_ .punctuation_definition_string_end_tex {
+	color: #dc322f;
+}
+
+/* Tex: \label */
+pre.textmate-source.solarized_light_ .keyword_control_label_latex, pre.textmate-source.solarized_light_ .text_tex_latex .constant_other_general_math_tex {
+	color: #2aa198;
+}
+
+/* Tex: \label { } */
+pre.textmate-source.solarized_light_ .variable_parameter_definition_label_latex {
+	color: #dc322f;
+}
+
+/* Tex: Function */
+pre.textmate-source.solarized_light_ .support_function_be_latex {
+	color: #859900;
+}
+
+/* Tex: Support Function Section */
+pre.textmate-source.solarized_light_ .support_function_section_latex {
+	color: #cb4b16;
+}
+
+/* Tex: Support Function */
+pre.textmate-source.solarized_light_ .support_function_general_tex {
+	color: #2aa198;
+}
+
+/* Tex: Comment */
+pre.textmate-source.solarized_light_ .punctuation_definition_comment_tex, pre.textmate-source.solarized_light_ .comment_line_percentage_tex {
+	font-style: italic;
+}
+
+/* Tex: Reference Label */
+pre.textmate-source.solarized_light_ .keyword_control_ref_latex {
+	color: #2aa198;
+}
+
+/* Python: storage */
+pre.textmate-source.solarized_light_ .storage_type_class_python, pre.textmate-source.solarized_light_ .storage_type_function_python, pre.textmate-source.solarized_light_ .storage_modifier_global_python {
+	color: #859900;
+}
+
+/* Python: import */
+pre.textmate-source.solarized_light_ .keyword_control_import_python, pre.textmate-source.solarized_light_ .keyword_control_import_from_python {
+	color: #cb4b16;
+}
+
+/* Python: Support.exception */
+pre.textmate-source.solarized_light_ .support_type_exception_python {
+	color: #b58900;
+}
+
+/* Shell: builtin */
+pre.textmate-source.solarized_light_ .support_function_builtin_shell {
+	color: #859900;
+}
+
+/* Shell: variable */
+pre.textmate-source.solarized_light_ .variable_other_normal_shell {
+	color: #cb4b16;
+}
+
+/* Shell: DOT_FILES */
+pre.textmate-source.solarized_light_ .source_shell {
+	color: #268bd2;
+}
+
+/* Shell: meta scope in loop */
+pre.textmate-source.solarized_light_ .meta_scope_for-in-loop_shell, pre.textmate-source.solarized_light_ .variable_other_loop_shell {
+	color: #586e75;
+}
+
+/* Shell: "" */
+pre.textmate-source.solarized_light_ .punctuation_definition_string_end_shell, pre.textmate-source.solarized_light_ .punctuation_definition_string_begin_shell {
+	color: #859900;
+}
+
+/* Shell: Meta Block */
+pre.textmate-source.solarized_light_ .meta_scope_case-block_shell, pre.textmate-source.solarized_light_ .meta_scope_case-body_shell {
+	color: #586e75;
+}
+
+/* Shell: [] */
+pre.textmate-source.solarized_light_ .punctuation_definition_logical-expression_shell {
+	color: #dc322f;
+}
+
+/* Shell: Comment */
+pre.textmate-source.solarized_light_ .comment_line_number-sign_shell {
+	font-style: italic;
+}
+
+/* Java: import */
+pre.textmate-source.solarized_light_ .keyword_other_import_java {
+	color: #cb4b16;
+}
+
+/* Java: meta-import */
+pre.textmate-source.solarized_light_ .storage_modifier_import_java {
+	color: #586E75;
+}
+
+/* Java: Class */
+pre.textmate-source.solarized_light_ .meta_class_java .storage_modifier_java {
+	color: #b58900;
+}
+
+/* Java: /* comment */ */
+pre.textmate-source.solarized_light_ .source_java .comment_block {
+	color: #586e75;
+}
+
+/* Java: /* @param */ */
+pre.textmate-source.solarized_light_ .comment_block .meta_documentation_tag_param_javadoc .keyword_other_documentation_param_javadoc {
+	color: #586e75;
+}
+
+/* Perl: variables */
+pre.textmate-source.solarized_light_ .punctuation_definition_variable_perl, pre.textmate-source.solarized_light_ .variable_other_readwrite_global_perl, pre.textmate-source.solarized_light_ .variable_other_predefined_perl, pre.textmate-source.solarized_light_ .keyword_operator_comparison_perl {
+	color: #b58900;
+}
+
+/* Perl: functions */
+pre.textmate-source.solarized_light_ .support_function_perl {
+	color: #859900;
+}
+
+/* Perl: comments */
+pre.textmate-source.solarized_light_ .comment_line_number-sign_perl {
+	color: #586E75;
+	font-style: italic;
+}
+
+/* Perl: quotes */
+pre.textmate-source.solarized_light_ .punctuation_definition_string_begin_perl, pre.textmate-source.solarized_light_ .punctuation_definition_string_end_perl {
+	color: #2aa198;
+}
+
+/* Perl: \char */
+pre.textmate-source.solarized_light_ .constant_character_escape_perl {
+	color: #DC322F;
+}
+
+/* Markdown: Headings */
+pre.textmate-source.solarized_light_ .markup_heading_markdown, pre.textmate-source.solarized_light_ .markup_heading_1_markdown, pre.textmate-source.solarized_light_ .markup_heading_2_markdown, pre.textmate-source.solarized_light_ .markup_heading_3_markdown, pre.textmate-source.solarized_light_ .markup_heading_4_markdown, pre.textmate-source.solarized_light_ .markup_heading_5_markdown, pre.textmate-source.solarized_light_ .markup_heading_6_markdown {
+	color: #268bd2;
+}
+
+/* Markdown: Bold */
+pre.textmate-source.solarized_light_ .markup_bold_markdown {
+	color: #586E75;
+	font-weight: bold;
+}
+
+/* Markdown: Italic */
+pre.textmate-source.solarized_light_ .markup_italic_markdown {
+	color: #586E75;
+	font-style: italic;
+}
+
+/* Markdown: Punctuation for Bold, Italic, and Inline Block */
+pre.textmate-source.solarized_light_ .punctuation_definition_bold_markdown, pre.textmate-source.solarized_light_ .punctuation_definition_italic_markdown, pre.textmate-source.solarized_light_ .punctuation_definition_raw_markdown {
+	color: #DC322F;
+}
+
+/* Markdown: Bulleted List */
+pre.textmate-source.solarized_light_ .markup_list_unnumbered_markdown {
+	color: #B58900;
+}
+
+/* Markdown: Numbered List */
+pre.textmate-source.solarized_light_ .markup_list_numbered_markdown {
+	color: #859900;
+}
+
+/* Markdown: Block and Inline Block */
+pre.textmate-source.solarized_light_ .markup_raw_block_markdown, pre.textmate-source.solarized_light_ .markup_raw_inline_markdown {
+	color: #2aa198;
+}
+
+/* markup.quote.markdown */
+pre.textmate-source.solarized_light_ .markup_quote_markdown {
+	color: #6c71c4;
+}
+
+/* punctuation.definition.blockquote.markdown */
+pre.textmate-source.solarized_light_ .punctuation_definition_blockquote_markdown {
+	color: #6c71c4;
+}
+
+/* Markdown: Seperator */
+pre.textmate-source.solarized_light_ .meta_separator_markdown {
+	color: #d33682;
+}
+
+/* Markdown: Link URL, Reference */
+pre.textmate-source.solarized_light_ .markup_underline_link_markdown {
+	color: #839496;
+}
+
+/* Markdown: Link Title */
+pre.textmate-source.solarized_light_ .markup_underline_link_markdown {
+	color: #839496;
+}
+
+/* Markdown: Link Punctuation */
+pre.textmate-source.solarized_light_ .meta_link_inet_markdown, pre.textmate-source.solarized_light_ .meta_link_email_lt-gt_markdown, pre.textmate-source.solarized_light_ .punctuation_definition_string_begin_markdown, pre.textmate-source.solarized_light_ .punctuation_definition_string_end_markdown, pre.textmate-source.solarized_light_ .punctuation_definition_link_markdown {
+	color: #DC322F;
+}
+
+/* text plain */
+pre.textmate-source.solarized_light_ .text_plain {
+	color: #6a8187;
+}
+
+/* SublimeLinter Annotations */
+pre.textmate-source.solarized_light_ .sublimelinter_notes {
+	color: #eee8d5;
+	background-color: #eee8d5;
+}
+
+/* SublimeLinter Error Outline */
+pre.textmate-source.solarized_light_ .sublimelinter_outline_illegal {
+	color: #93a1a1;
+	background-color: #93a1a1;
+}
+
+/* SublimeLinter Error Underline */
+pre.textmate-source.solarized_light_ .sublimelinter_underline_illegal {
+	background-color: #dc322f;
+}
+
+/* SublimeLinter Warning Outline */
+pre.textmate-source.solarized_light_ .sublimelinter_outline_warning {
+	color: #839496;
+	background-color: #839496;
+}
+
+/* SublimeLinter Warning Underline */
+pre.textmate-source.solarized_light_ .sublimelinter_underline_warning {
+	background-color: #b58900;
+}
+
+/* SublimeLinter Violation Outline */
+pre.textmate-source.solarized_light_ .sublimelinter_outline_violation {
+	color: #657b83;
+	background-color: #657b83;
+}
+
+/* SublimeLinter Violation Underline */
+pre.textmate-source.solarized_light_ .sublimelinter_underline_violation {
+	background-color: #cb4b16;
+}
+
+
+
+	</style>
+</head>
+
+<body><pre class="textmate-source solarized_light_"><span class="source source_python"><span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span>!/usr/bin/env python3
+</span><span class="comment comment_block comment_block_python"><span class="string string_quoted string_quoted_double string_quoted_double_block string_quoted_double_block_python"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_python">"""</span>
+Song Search Load All Data
+written by: Anne Hamill
+created on: 14 February 2022
+clean: 0
+
+Driving code which builds the Score Dictionary, and loads it into the database.
+<span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_python">"""</span></span></span>
+<span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span>                                           IMPORTS
+<span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span>-----------------------------------------------------------------------------------------------
+</span>
+<span class="keyword keyword_control keyword_control_import keyword_control_import_from keyword_control_import_from_python">from</span> <span class="meta meta_identifier meta_identifier_python">music21_globals</span>    <span class="keyword keyword_control keyword_control_import keyword_control_import_import keyword_control_import_import_python">import</span> <span class="keyword keyword_operator keyword_operator_arithmetic keyword_operator_arithmetic_python">*</span>
+
+<span class="keyword keyword_control keyword_control_import keyword_control_import_from keyword_control_import_from_python">from</span> <span class="meta meta_identifier meta_identifier_python">other_data</span>         <span class="keyword keyword_control keyword_control_import keyword_control_import_import keyword_control_import_import_python">import</span> <span class="keyword keyword_operator keyword_operator_arithmetic keyword_operator_arithmetic_python">*</span>
+<span class="keyword keyword_control keyword_control_import keyword_control_import_from keyword_control_import_from_python">from</span> <span class="meta meta_identifier meta_identifier_python">pitch_data</span>         <span class="keyword keyword_control keyword_control_import keyword_control_import_import keyword_control_import_import_python">import</span> <span class="keyword keyword_operator keyword_operator_arithmetic keyword_operator_arithmetic_python">*</span>
+<span class="keyword keyword_control keyword_control_import keyword_control_import_from keyword_control_import_from_python">from</span> <span class="meta meta_identifier meta_identifier_python">rhythm_data</span>        <span class="keyword keyword_control keyword_control_import keyword_control_import_import keyword_control_import_import_python">import</span> <span class="keyword keyword_operator keyword_operator_arithmetic keyword_operator_arithmetic_python">*</span>
+
+
+<span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span>                                           VARIABLES
+<span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span>-----------------------------------------------------------------------------------------------
+</span>
+
+
+
+
+<span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span>                                            METHODS
+<span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span>-----------------------------------------------------------------------------------------------
+</span><span class="meta meta_function meta_function_python"><span class="storage storage_type storage_type_function storage_type_function_python">def</span> <span class="entity entity_name entity_name_function entity_name_function_python">score_dictionary</span><span class="punctuation punctuation_definition punctuation_definition_parameters punctuation_definition_parameters_begin punctuation_definition_parameters_begin_python">(</span>)<span class="punctuation punctuation_section punctuation_section_function punctuation_section_function_begin punctuation_section_function_begin_python">:</span></span>
+<span class="comment comment_block comment_block_python">    <span class="string string_quoted string_quoted_double string_quoted_double_block string_quoted_double_block_python"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_python">"""</span>
+    Call the constituent modules to build a complete Score Dictionary
+    <span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_python">"""</span></span></span>
+<span class="punctuation punctuation_whitespace punctuation_whitespace_comment punctuation_whitespace_comment_leading punctuation_whitespace_comment_leading_python">    </span><span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span> First make sure that the corpus and metadata are current
+</span>    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">update_metadata_cache</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    
+<span class="punctuation punctuation_whitespace punctuation_whitespace_comment punctuation_whitespace_comment_leading punctuation_whitespace_comment_leading_python">    </span><span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span> Call each data module starting with the file info
+</span>    <span class="meta meta_identifier meta_identifier_python">the_data</span> <span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_python">=</span> <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">score_file_info</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    
+<span class="punctuation punctuation_whitespace punctuation_whitespace_comment punctuation_whitespace_comment_leading punctuation_whitespace_comment_leading_python">    </span><span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span> Get the metadata for each module
+</span>    <span class="meta meta_identifier meta_identifier_python">my_metadata</span> <span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_python">=</span> <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">access_metadata</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    
+<span class="punctuation punctuation_whitespace punctuation_whitespace_comment punctuation_whitespace_comment_leading punctuation_whitespace_comment_leading_python">    </span><span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span> Each of the rhythm functions
+</span>    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">time_signature</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">the_data</span>, <span class="meta meta_identifier meta_identifier_python">my_metadata</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">meter</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">the_data</span>, <span class="meta meta_identifier meta_identifier_python">my_metadata</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">value_list</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">the_data</span>, <span class="meta meta_identifier meta_identifier_python">my_metadata</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">anacrusis</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">the_data</span>, <span class="meta meta_identifier meta_identifier_python">my_metadata</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">ties</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">the_data</span>, <span class="meta meta_identifier meta_identifier_python">my_metadata</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    
+<span class="punctuation punctuation_whitespace punctuation_whitespace_comment punctuation_whitespace_comment_leading punctuation_whitespace_comment_leading_python">    </span><span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span> Pitch functions
+</span>    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">key_signature</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">the_data</span>, <span class="meta meta_identifier meta_identifier_python">my_metadata</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">clef</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">the_data</span>, <span class="meta meta_identifier meta_identifier_python">my_metadata</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">melody_range</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">the_data</span>, <span class="meta meta_identifier meta_identifier_python">my_metadata</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">letter_names</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">the_data</span>, <span class="meta meta_identifier meta_identifier_python">my_metadata</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">solfege_names</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">the_data</span>, <span class="meta meta_identifier meta_identifier_python">my_metadata</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">intervals</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">the_data</span>, <span class="meta meta_identifier meta_identifier_python">my_metadata</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    
+<span class="punctuation punctuation_whitespace punctuation_whitespace_comment punctuation_whitespace_comment_leading punctuation_whitespace_comment_leading_python">    </span><span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span> Other functions
+</span>    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">number_of_parts</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">the_data</span>, <span class="meta meta_identifier meta_identifier_python">my_metadata</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">measure_length</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">the_data</span>, <span class="meta meta_identifier meta_identifier_python">my_metadata</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">repeats</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">the_data</span>, <span class="meta meta_identifier meta_identifier_python">my_metadata</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">lyrics</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">the_data</span>, <span class="meta meta_identifier meta_identifier_python">my_metadata</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">chords_symbols</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">the_data</span>, <span class="meta meta_identifier meta_identifier_python">my_metadata</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">slurs</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">the_data</span>, <span class="meta meta_identifier meta_identifier_python">my_metadata</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    
+    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">pprint</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">the_data</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">pickle_it</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">the_data</span>, <span class="variable variable_parameter variable_parameter_function variable_parameter_function_keyword variable_parameter_function_keyword_python">pickle_path</span><span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_python">=</span><span class="constant constant_other constant_other_allcaps constant_other_allcaps_python">SCORE_DATAPATH</span><span class="punctuation punctuation_separator punctuation_separator_parameters punctuation_separator_parameters_python">,</span> <span class="variable variable_parameter variable_parameter_function variable_parameter_function_keyword variable_parameter_function_keyword_python">text_path</span><span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_python">=</span><span class="constant constant_other constant_other_allcaps constant_other_allcaps_python">SCORE_LOGPATH</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+
+<span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span>
+<span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span>-----------------------------------------------------------------------------------------------
+</span><span class="meta meta_function meta_function_python"><span class="storage storage_type storage_type_function storage_type_function_python">def</span> <span class="entity entity_name entity_name_function entity_name_function_python">xxxbuild_single</span><span class="punctuation punctuation_definition punctuation_definition_parameters punctuation_definition_parameters_begin punctuation_definition_parameters_begin_python">(</span>)<span class="punctuation punctuation_section punctuation_section_function punctuation_section_function_begin punctuation_section_function_begin_python">:</span></span>
+<span class="comment comment_block comment_block_python">    <span class="string string_quoted string_quoted_double string_quoted_double_block string_quoted_double_block_python"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_python">"""</span>
+    Build a single entry in the Score Dictionary.
+    <span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_python">"""</span></span></span>
+    <span class="meta meta_identifier meta_identifier_python">my_metadata</span> <span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_python">=</span> <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">access_metadata</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    
+    <span class="meta meta_identifier meta_identifier_python">score_list</span> <span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_python">=</span> <span class="meta meta_structure meta_structure_list meta_structure_list_python"><span class="punctuation punctuation_definition punctuation_definition_list punctuation_definition_list_begin punctuation_definition_list_begin_python">[</span><span class="punctuation punctuation_definition punctuation_definition_list punctuation_definition_list_end punctuation_definition_list_end_python">]</span></span>
+    
+    <span class="keyword keyword_control keyword_control_flow keyword_control_flow_python">for</span> <span class="meta meta_identifier meta_identifier_python">x</span> <span class="keyword keyword_operator keyword_operator_logical keyword_operator_logical_python">in</span> <span class="meta meta_function-call meta_function-call_python"><span class="support support_function support_function_builtin support_function_builtin_call support_function_builtin_call_python">range</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_function-call meta_function-call_python"><span class="support support_function support_function_builtin support_function_builtin_call support_function_builtin_call_python">len</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">my_metadata</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>:
+        <span class="meta meta_identifier meta_identifier_python">score_path</span> <span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_python">=</span> <span class="meta meta_item-access meta_item-access_python"><span class="meta meta_identifier meta_identifier_python">my_metadata</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">[</span><span class="meta meta_item-access meta_item-access_arguments meta_item-access_arguments_python"><span class="meta meta_identifier meta_identifier_python">x</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">]</span></span>.metadata.sourcePath
+        <span class="meta meta_identifier meta_identifier_python">file_name</span> <span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_python">=</span> score_path.<span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">split</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="string string_quoted string_quoted_single string_quoted_single_single-line string_quoted_single_single-line_python"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_python">'</span>/<span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_python">'</span></span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span><span class="meta meta_structure meta_structure_list meta_structure_list_python"><span class="punctuation punctuation_definition punctuation_definition_list punctuation_definition_list_begin punctuation_definition_list_begin_python">[</span><span class="meta meta_structure meta_structure_list meta_structure_list_item meta_structure_list_item_python"><span class="keyword keyword_operator keyword_operator_arithmetic keyword_operator_arithmetic_python">-</span><span class="constant constant_numeric constant_numeric_integer constant_numeric_integer_decimal constant_numeric_integer_decimal_python">1</span></span><span class="punctuation punctuation_definition punctuation_definition_list punctuation_definition_list_end punctuation_definition_list_end_python">]</span></span><span class="meta meta_function-call meta_function-call_python">.<span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">split</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="string string_quoted string_quoted_single string_quoted_single_single-line string_quoted_single_single-line_python"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_python">'</span>.<span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_python">'</span></span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span><span class="meta meta_structure meta_structure_list meta_structure_list_python"><span class="punctuation punctuation_definition punctuation_definition_list punctuation_definition_list_begin punctuation_definition_list_begin_python">[</span><span class="meta meta_structure meta_structure_list meta_structure_list_item meta_structure_list_item_python"><span class="constant constant_numeric constant_numeric_integer constant_numeric_integer_decimal constant_numeric_integer_decimal_python">0</span></span><span class="punctuation punctuation_definition punctuation_definition_list punctuation_definition_list_end punctuation_definition_list_end_python">]</span></span>
+        score_list.<span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">append</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">file_name</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+        
+
+<span class="punctuation punctuation_whitespace punctuation_whitespace_comment punctuation_whitespace_comment_leading punctuation_whitespace_comment_leading_python">    </span><span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span> Is there a Score Dictionary already?
+</span>    <span class="meta meta_identifier meta_identifier_python">score_dict_path</span> <span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_python">=</span> <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">find_file</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="string string_quoted string_quoted_single string_quoted_single_single-line string_quoted_single_single-line_python"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_python">'</span>score_dictionary.pkl<span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_python">'</span></span>, <span class="string string_quoted string_quoted_single string_quoted_single_single-line string_quoted_single_single-line_python"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_python">'</span>score_data<span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_python">'</span></span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    
+<span class="punctuation punctuation_whitespace punctuation_whitespace_comment punctuation_whitespace_comment_leading punctuation_whitespace_comment_leading_python">    </span><span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span> Yes? Unpickle it.
+</span>    <span class="keyword keyword_control keyword_control_flow keyword_control_flow_python">if</span> <span class="meta meta_identifier meta_identifier_python">score_dict_path</span>:
+        <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">pprint</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">score_dict_path</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+        <span class="meta meta_identifier meta_identifier_python">score_dictionary</span> <span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_python">=</span> <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">unpickle_it</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="variable variable_parameter variable_parameter_function variable_parameter_function_keyword variable_parameter_function_keyword_python">pickle_path</span><span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_python">=</span><span class="constant constant_other constant_other_allcaps constant_other_allcaps_python">SCORE_DATAPATH</span><span class="punctuation punctuation_separator punctuation_separator_parameters punctuation_separator_parameters_python">,</span> <span class="variable variable_parameter variable_parameter_function variable_parameter_function_keyword variable_parameter_function_keyword_python">be_verbose</span><span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_python">=</span><span class="constant constant_language constant_language_python">False</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    
+<span class="punctuation punctuation_whitespace punctuation_whitespace_comment punctuation_whitespace_comment_leading punctuation_whitespace_comment_leading_python">    </span><span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span> No? Then all the scores need to go into the iteration list.
+</span>    <span class="keyword keyword_control keyword_control_flow keyword_control_flow_python">else</span>:
+        <span class="meta meta_function-call meta_function-call_python"><span class="support support_function support_function_builtin support_function_builtin_call support_function_builtin_call_python">print</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="string string_quoted string_quoted_single string_quoted_single_single-line string_quoted_single_single-line_python"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_python">'</span>not here dave<span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_python">'</span></span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+        <span class="meta meta_identifier meta_identifier_python">iteration_list</span> <span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_python">=</span> <span class="meta meta_identifier meta_identifier_python">score_list</span>
+        <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">pprint</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">iteration_list</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+
+<span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span>
+<span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span>-----------------------------------------------------------------------------------------------
+</span><span class="meta meta_function meta_function_python"><span class="storage storage_type storage_type_function storage_type_function_python">def</span> <span class="entity entity_name entity_name_function entity_name_function_python">build_an_entry</span><span class="punctuation punctuation_definition punctuation_definition_parameters punctuation_definition_parameters_begin punctuation_definition_parameters_begin_python">(</span><span class="meta meta_function meta_function_parameters meta_function_parameters_python"><span class="variable variable_parameter variable_parameter_function variable_parameter_function_python">dictionary</span></span>)<span class="punctuation punctuation_section punctuation_section_function punctuation_section_function_begin punctuation_section_function_begin_python">:</span></span>
+<span class="comment comment_block comment_block_python">    <span class="string string_quoted string_quoted_double string_quoted_double_block string_quoted_double_block_python"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_python">"""</span>
+    Take the score dictionary with only file information entries, iterate through it to create a full entry.
+    
+    Most of processing time is for generating the pretty print statement.
+    
+    <span class="storage storage_type storage_type_class storage_type_class_todo">TODO</span>:
+        1) Figure out a way of parsing the scores here rather than in the individual functions.
+    <span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_python">"""</span></span></span>
+    
+    <span class="meta meta_identifier meta_identifier_python">my_metadata</span> <span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_python">=</span> <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">access_metadata</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    
+    <span class="keyword keyword_control keyword_control_flow keyword_control_flow_python">for</span> <span class="meta meta_identifier meta_identifier_python">next_entry</span> <span class="keyword keyword_operator keyword_operator_logical keyword_operator_logical_python">in</span> <span class="meta meta_identifier meta_identifier_python">dictionary</span>:
+        
+<span class="punctuation punctuation_whitespace punctuation_whitespace_comment punctuation_whitespace_comment_leading punctuation_whitespace_comment_leading_python">        </span><span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span> Other musical elements
+</span>        <span class="meta meta_item-access meta_item-access_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">[</span><span class="meta meta_item-access meta_item-access_arguments meta_item-access_arguments_python"><span class="meta meta_identifier meta_identifier_python">next_entry</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">]</span></span><span class="meta meta_structure meta_structure_list meta_structure_list_python"><span class="punctuation punctuation_definition punctuation_definition_list punctuation_definition_list_begin punctuation_definition_list_begin_python">[</span><span class="meta meta_structure meta_structure_list meta_structure_list_item meta_structure_list_item_python"><span class="string string_quoted string_quoted_single string_quoted_single_single-line string_quoted_single_single-line_python"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_python">'</span>Other<span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_python">'</span></span></span><span class="punctuation punctuation_definition punctuation_definition_list punctuation_definition_list_end punctuation_definition_list_end_python">]</span></span> <span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_python">=</span> <span class="meta meta_structure meta_structure_dictionary meta_structure_dictionary_python"><span class="punctuation punctuation_definition punctuation_definition_dictionary punctuation_definition_dictionary_begin punctuation_definition_dictionary_begin_python">{</span><span class="meta meta_empty-dictionary meta_empty-dictionary_python"><span class="punctuation punctuation_definition punctuation_definition_dictionary punctuation_definition_dictionary_end punctuation_definition_dictionary_end_python">}</span></span></span>
+        
+        <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">number_of_parts</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span>, <span class="meta meta_identifier meta_identifier_python">next_entry</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+        <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">measure_length</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span>, <span class="meta meta_identifier meta_identifier_python">next_entry</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+        <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">repeats</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span>, <span class="meta meta_identifier meta_identifier_python">next_entry</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+        <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">lyrics</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span>, <span class="meta meta_identifier meta_identifier_python">next_entry</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+        <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">chords_symbols</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span>, <span class="meta meta_identifier meta_identifier_python">next_entry</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+        <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">slurs</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span>, <span class="meta meta_identifier meta_identifier_python">next_entry</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+        
+<span class="punctuation punctuation_whitespace punctuation_whitespace_comment punctuation_whitespace_comment_leading punctuation_whitespace_comment_leading_python">        </span><span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span> Pitch elements
+</span>        <span class="meta meta_item-access meta_item-access_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">[</span><span class="meta meta_item-access meta_item-access_arguments meta_item-access_arguments_python"><span class="meta meta_identifier meta_identifier_python">next_entry</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">]</span></span><span class="meta meta_structure meta_structure_list meta_structure_list_python"><span class="punctuation punctuation_definition punctuation_definition_list punctuation_definition_list_begin punctuation_definition_list_begin_python">[</span><span class="meta meta_structure meta_structure_list meta_structure_list_item meta_structure_list_item_python"><span class="string string_quoted string_quoted_single string_quoted_single_single-line string_quoted_single_single-line_python"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_python">'</span>Pitch<span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_python">'</span></span></span><span class="punctuation punctuation_definition punctuation_definition_list punctuation_definition_list_end punctuation_definition_list_end_python">]</span></span> <span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_python">=</span> <span class="meta meta_structure meta_structure_dictionary meta_structure_dictionary_python"><span class="punctuation punctuation_definition punctuation_definition_dictionary punctuation_definition_dictionary_begin punctuation_definition_dictionary_begin_python">{</span><span class="meta meta_empty-dictionary meta_empty-dictionary_python"><span class="punctuation punctuation_definition punctuation_definition_dictionary punctuation_definition_dictionary_end punctuation_definition_dictionary_end_python">}</span></span></span>
+        
+        <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">key_signature</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span>, <span class="meta meta_identifier meta_identifier_python">my_metadata</span>, <span class="meta meta_identifier meta_identifier_python">next_entry</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+        <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">find_clef</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span>, <span class="meta meta_identifier meta_identifier_python">next_entry</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+        <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">melody_range</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span>, <span class="meta meta_identifier meta_identifier_python">next_entry</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+        <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">letter_names</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span>, <span class="meta meta_identifier meta_identifier_python">next_entry</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+        <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">solfege_names</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span>, <span class="meta meta_identifier meta_identifier_python">next_entry</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+        <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">intervals</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span>, <span class="meta meta_identifier meta_identifier_python">next_entry</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+        
+<span class="punctuation punctuation_whitespace punctuation_whitespace_comment punctuation_whitespace_comment_leading punctuation_whitespace_comment_leading_python">        </span><span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span> Rhythm elements
+</span>        <span class="meta meta_item-access meta_item-access_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">[</span><span class="meta meta_item-access meta_item-access_arguments meta_item-access_arguments_python"><span class="meta meta_identifier meta_identifier_python">next_entry</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">]</span></span><span class="meta meta_structure meta_structure_list meta_structure_list_python"><span class="punctuation punctuation_definition punctuation_definition_list punctuation_definition_list_begin punctuation_definition_list_begin_python">[</span><span class="meta meta_structure meta_structure_list meta_structure_list_item meta_structure_list_item_python"><span class="string string_quoted string_quoted_single string_quoted_single_single-line string_quoted_single_single-line_python"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_python">'</span>Rhythm<span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_python">'</span></span></span><span class="punctuation punctuation_definition punctuation_definition_list punctuation_definition_list_end punctuation_definition_list_end_python">]</span></span> <span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_python">=</span> <span class="meta meta_structure meta_structure_dictionary meta_structure_dictionary_python"><span class="punctuation punctuation_definition punctuation_definition_dictionary punctuation_definition_dictionary_begin punctuation_definition_dictionary_begin_python">{</span><span class="meta meta_empty-dictionary meta_empty-dictionary_python"><span class="punctuation punctuation_definition punctuation_definition_dictionary punctuation_definition_dictionary_end punctuation_definition_dictionary_end_python">}</span></span></span>
+        
+        <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">time_signature</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span>, <span class="meta meta_identifier meta_identifier_python">my_metadata</span>, <span class="meta meta_identifier meta_identifier_python">next_entry</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+        <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">meter</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span>, <span class="meta meta_identifier meta_identifier_python">next_entry</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+        <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">value_list</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span>, <span class="meta meta_identifier meta_identifier_python">next_entry</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+        <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">anacrusis</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span>, <span class="meta meta_identifier meta_identifier_python">next_entry</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+        <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">ties</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span>, <span class="meta meta_identifier meta_identifier_python">next_entry</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+        
+<span class="punctuation punctuation_whitespace punctuation_whitespace_comment punctuation_whitespace_comment_leading punctuation_whitespace_comment_leading_python">        </span><span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span> About elements
+</span><span class="punctuation punctuation_whitespace punctuation_whitespace_comment punctuation_whitespace_comment_leading punctuation_whitespace_comment_leading_python">        </span><span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span> will be added at a later time
+</span>        
+    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">pickle_it</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span>, <span class="variable variable_parameter variable_parameter_function variable_parameter_function_keyword variable_parameter_function_keyword_python">pickle_path</span><span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_python">=</span><span class="constant constant_other constant_other_allcaps constant_other_allcaps_python">SCORE_DATAPATH</span><span class="punctuation punctuation_separator punctuation_separator_parameters punctuation_separator_parameters_python">,</span> <span class="variable variable_parameter variable_parameter_function variable_parameter_function_keyword variable_parameter_function_keyword_python">text_path</span><span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_python">=</span><span class="constant constant_other constant_other_allcaps constant_other_allcaps_python">SCORE_LOGPATH</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">pprint</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+
+<span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span>
+<span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span>-----------------------------------------------------------------------------------------------
+</span>
+
+
+<span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span>                                           MAIN
+<span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span>-----------------------------------------------------------------------------------------------
+</span><span class="keyword keyword_control keyword_control_flow keyword_control_flow_python">if</span> <span class="support support_variable support_variable_magic support_variable_magic_python">__name__</span> <span class="keyword keyword_operator keyword_operator_comparison keyword_operator_comparison_python">==</span> <span class="string string_quoted string_quoted_single string_quoted_single_single-line string_quoted_single_single-line_python"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_python">'</span>__main__<span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_python">'</span></span>:
+    
+<span class="punctuation punctuation_whitespace punctuation_whitespace_comment punctuation_whitespace_comment_leading punctuation_whitespace_comment_leading_python">    </span><span class="comment comment_line comment_line_number-sign comment_line_number-sign_python"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_python">#</span>score_dictionary()
+</span>    
+    <span class="meta meta_identifier meta_identifier_python">dictionary</span> <span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_python">=</span> <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">unpickle_it</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="variable variable_parameter variable_parameter_function variable_parameter_function_keyword variable_parameter_function_keyword_python">pickle_path</span><span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_python">=</span><span class="constant constant_other constant_other_allcaps constant_other_allcaps_python">SCORE_DATAPATH</span><span class="punctuation punctuation_separator punctuation_separator_parameters punctuation_separator_parameters_python">,</span> <span class="variable variable_parameter variable_parameter_function variable_parameter_function_keyword variable_parameter_function_keyword_python">be_verbose</span><span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_python">=</span><span class="constant constant_language constant_language_python">False</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    <span class="meta meta_function-call meta_function-call_python"><span class="meta meta_function-call meta_function-call_generic meta_function-call_generic_python">build_an_entry</span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_begin punctuation_definition_arguments_begin_python">(</span><span class="meta meta_function-call meta_function-call_arguments meta_function-call_arguments_python"><span class="meta meta_identifier meta_identifier_python">dictionary</span></span><span class="punctuation punctuation_definition punctuation_definition_arguments punctuation_definition_arguments_end punctuation_definition_arguments_end_python">)</span></span>
+    </span></pre>
+</body>
+</html>
