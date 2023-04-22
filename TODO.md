@@ -3,7 +3,6 @@
 
 ### Summary ###
 
-* Driving code for data modules
 * Streams for family scores (new branch)
 * About data modules
 * Clean data & error handling
@@ -17,8 +16,6 @@
 
 ### Driving Code ###
 
-* One module which calls all the other data modules.  Class?
-* Refactor data module code to make processing as efficient as possible.
 * Mongo db schema
 * Code for loading into db
 

@@ -54,11 +54,20 @@ def key_signature(a_dictionary, the_metadata, score):
         if the_metadata[x].metadata.sourcePath == a_dictionary[score]['File Information']['Path']:
             if the_metadata[x].metadata.ambitus.semitones == 0:
                 a_dictionary[score]['Pitch']['Key Signature'] = 'Unpitched'
+                #pass
                 
             else:
                 tur_key = parsed.recurse().getElementsByClass(key.Key)[0]      # only returns major keys
                 mon_key = parsed.analyze('key.krumhanslschmuckler')
                 hoc_key = parsed.analyze('key')
+                
+                # print(f'{my_metadata[x].metadata.sourcePath}')
+                # print(f'Get Elements: {tur_key}')
+                # print(f'KrumhaslSchumuckler: {mon_key}')
+                # print(f'Analze Key: {hoc_key}')
+                # print(f'AardenEssen: {analysis.discrete.AardenEssen().getSolution(parsed)}')
+                # print(f'BellmanBudge: {analysis.discrete.BellmanBudge().getSolution(parsed)}')
+                # print(f'TemperleyKostkaPayne: {analysis.discrete.TemperleyKostkaPayne().getSolution(parsed)}')
 
                 if tur_key == mon_key:
                     real_key = tur_key
@@ -97,7 +106,7 @@ def find_clef(a_dictionary, score):
 #-----------------------------------------------------------------------------------------------
 def melody_range(a_dictionary, score):
     """
-    Get the interval range, lowest note, and highest note for each part from music21.alaysis.discrete module.
+    Get the interval range, lowest note, and highest note for each part from music21.analaysis.discrete module.
     """
 
     parsed = a_dictionary[score]['File Information']['Stream']
@@ -291,14 +300,17 @@ if __name__ == '__main__':
     # Retreive the Score Dictionary and metadata.
     score_dictionary = unpickle_it(pickle_path=SCORE_DATAPATH, be_verbose=False)
     my_metadata = access_metadata()
-
-    key_signature(score_dictionary, my_metadata)
-    clef(score_dictionary, my_metadata)
-    melody_range(score_dictionary, my_metadata)
-    letter_names(score_dictionary, my_metadata)
-    solfege_names(score_dictionary, my_metadata)
-    intervals(score_dictionary, my_metadata)
+    
+    for next_score in score_dictionary:
+        
+        score_dictionary[next_score]['Pitch'] = {}
+        key_signature(score_dictionary, my_metadata, next_score)
+        #clef(score_dictionary, my_metadata)
+        melody_range(score_dictionary, next_score)
+        #letter_names(score_dictionary, my_metadata)
+        #solfege_names(score_dictionary, my_metadata)
+        #intervals(score_dictionary, my_metadata)
 
     pprint(score_dictionary)
-    pickle_it(score_dictionary, pickle_path=SCORE_DATAPATH, text_path=SCORE_LOGPATH)
+    #pickle_it(score_dictionary, pickle_path=SCORE_DATAPATH, text_path=SCORE_LOGPATH)
 

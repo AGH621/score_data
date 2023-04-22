@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """
-Song Search
+Score Librarian
 written by: Anne Hamill
 created on: 23 October 2020
-clean: 0
 """
 #                                           IMPORTS
 #-----------------------------------------------------------------------------------------------
@@ -24,14 +23,14 @@ import codecs
 
 SCORE_DATAPATH           = Path.home().joinpath('Dropbox (Personal)', 'Score Library', 'score_search', 'score_data', '_Data', 'score_dictionary.pkl')
 SCORE_LOGPATH            = Path.home().joinpath('Dropbox (Personal)', 'Score Library', 'score_search', 'score_data', '_Logs', 'score_dictionary.txt')
-CORPUS_FILEPATH          = Path.home().joinpath('Dropbox (Personal)', 'Score Library', 'xml_dev')
+CORPUS_FILEPATH          = Path.home().joinpath('Dropbox (Personal)', 'Score Library', 'xml_all_clean')
 CACHE_FILEPATH           = Path.home().joinpath('Dropbox (Personal)', 'Score Library', 'score_search', 'score_data', '_cache')
 
 #                                            METHODS
 #-----------------------------------------------------------------------------------------------
 def reset_corpus():
     """
-    Delete the old local corpus when a new own becomes available.
+    Delete the old local corpus when a new one becomes available.
     """
     old_corpus = corpus.corpora.LocalCorpus('scoreLibrary')
     old_corpus.delete()
@@ -89,7 +88,7 @@ def score_file_info():
     NOTE: Created and Modified times vary by system.  Will need to put a timestamp in the file itself should this program ever be shared by users on separate machines.
     
     TODO:   1) Create and append Music21 streams to non-leadsheet scores?  [Not sure I want this.]
-            2) Rethink created on and modified on.  Because musicxml's maybe re-created with each edit, rather than modified.
+            2) Rethink created on and modified on.  Because musicxmls might be re-created with each edit, rather than modified.
         
     Tests:  1) What if file path does not exist?
             2) What if file is empty or corrupt?
@@ -237,7 +236,7 @@ def update_metadata_cache():
         print(">>>>> The score dictionary and the local corpus directory contain the same files. Proceeding to Step 2 of update analysis. <<<<<\n")
         
         # Check 2: Have any of the files been modified?
-        # Step 1: Retreive the mtime from the xml directory, translate to the form in the Score Dictionary, put in a dictionary.
+        # Step A: Retreive the mtime from the xml directory, translate to the form in the Score Dictionary, put in a dictionary.
         file_mod_time = {}
         for next_file in files:
             m_float_sec = next_file.stat().st_mtime
@@ -246,7 +245,7 @@ def update_metadata_cache():
         
         #pprint(file_mod_time)
 
-        # Step 2: Retreive the "Modified On" time from the Score Dictionary, put in a dictionary.
+        # Step B: Retreive the "Modified On" time from the Score Dictionary, put in a dictionary.
         score_mod_time = {}
         for next_score in score_dictionary:
             score_time = score_dictionary[next_score]['File Information']['Modified On']
@@ -254,7 +253,7 @@ def update_metadata_cache():
         
         #pprint(score_mod_time)
 
-        # Step 3: Use the deepdiff library to compare the 2 dictionaries
+        # Step C: Use the deepdiff library to compare the 2 dictionaries
         diff = DeepDiff(score_mod_time, file_mod_time)
         
         #for next_entry in diff:
@@ -262,7 +261,7 @@ def update_metadata_cache():
                 #print(f"{diff[next_entry][x]}\n")
 
         
-        # Step 4: If deepdiff returns a populated dictionary, then modifications have occurred.  Rebuild the metadata and Score Dictionary.
+        # Step D: If deepdiff returns a populated dictionary, then modifications have occurred.  Rebuild the metadata and Score Dictionary.
         if len(diff) > 0:
             print(">>>>> Files in the local corpus directory have been modified.  Rebuilding the music21 metadata cache and score dictionary. <<<<<")
             
@@ -305,12 +304,12 @@ def find_file(file_name, directory_name):
 #-----------------------------------------------------------------------------------------------
 if __name__ == '__main__':
     
-    #reset_corpus()
-    #define_corpus()
-    #build_metadata_cache()
+    reset_corpus()
+    define_corpus()
+    build_metadata_cache()
 
     score_dictionary = score_file_info()
-    #update_metadata_cache()
+    update_metadata_cache()
 
     score_dictionary = unpickle_it(pickle_path=SCORE_DATAPATH, be_verbose=False)
     pprint(score_dictionary)

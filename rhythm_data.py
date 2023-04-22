@@ -203,13 +203,18 @@ if __name__ == '__main__':
     
     # Retreive the Score Dictionary and metadata.
     score_dictionary = unpickle_it(pickle_path=SCORE_DATAPATH, be_verbose=False)
-    my_metadata = access_metadata()
+    #pprint(score_dictionary)
     
-    time_signature(score_dictionary, my_metadata)
-    meter(score_dictionary, my_metadata)
-    #value_list(score_dictionary, my_metadata)
-    #anacrusis(score_dictionary, my_metadata)
-    #ties(score_dictionary, my_metadata)
+    my_metadata = access_metadata()
+    #pprint(my_metadata)
+    
+    for next_score in score_dictionary:
+        score_dictionary[next_score]['Rhythm'] = {}
+        #time_signature(score_dictionary, my_metadata, next_score)
+        #meter(score_dictionary, next_score)
+        #value_list(score_dictionary, next_score)
+        #anacrusis(score_dictionary, next_score)
+        ties(score_dictionary, next_score)
 
     pprint(score_dictionary)
     #pickle_it(score_dictionary, pickle_path=SCORE_DATAPATH, text_path=SCORE_LOGPATH)
