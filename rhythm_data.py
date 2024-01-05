@@ -210,13 +210,13 @@ if __name__ == '__main__':
     
     for next_score in score_dictionary:
         score_dictionary[next_score]['Rhythm'] = {}
-        #time_signature(score_dictionary, my_metadata, next_score)
-        #meter(score_dictionary, next_score)
-        #value_list(score_dictionary, next_score)
-        #anacrusis(score_dictionary, next_score)
+        time_signature(score_dictionary, my_metadata, next_score)
+        meter(score_dictionary, next_score)
+        value_list(score_dictionary, next_score)
+        anacrusis(score_dictionary, next_score)
         ties(score_dictionary, next_score)
 
     pprint(score_dictionary)
-    #pickle_it(score_dictionary, pickle_path=SCORE_DATAPATH, text_path=SCORE_LOGPATH)
+    pickle_it(score_dictionary, pickle_path=SCORE_DATAPATH, text_path=SCORE_LOGPATH)
     
     

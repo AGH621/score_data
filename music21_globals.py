@@ -23,7 +23,7 @@ import codecs
 
 SCORE_DATAPATH           = Path.home().joinpath('Dropbox (Personal)', 'Score Library', 'score_search', 'score_data', '_Data', 'score_dictionary.pkl')
 SCORE_LOGPATH            = Path.home().joinpath('Dropbox (Personal)', 'Score Library', 'score_search', 'score_data', '_Logs', 'score_dictionary.txt')
-CORPUS_FILEPATH          = Path.home().joinpath('Dropbox (Personal)', 'Score Library', 'xml_all_clean')
+CORPUS_FILEPATH          = Path.home().joinpath('Dropbox (Personal)', 'Score Library', 'all_musicxml')
 CACHE_FILEPATH           = Path.home().joinpath('Dropbox (Personal)', 'Score Library', 'score_search', 'score_data', '_cache')
 
 #                                            METHODS
